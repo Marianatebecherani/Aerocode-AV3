@@ -66,6 +66,12 @@ Siga os passos abaixo para configurar o ambiente de desenvolvimento:
     npx prisma migrate dev
     ```
 
+6.  **Popule o banco de dados (Seed):**
+    Este comando executará o script de seed para popular o banco com dados iniciais, incluindo o usuário administrador.
+    ```bash
+    npx prisma db seed
+    ```
+
 ### 🚀 Rodando a Aplicação
 
 Após a instalação, você pode iniciar o servidor de desenvolvimento:
@@ -76,15 +82,14 @@ npm run dev
 
 A API estará disponível em `http://localhost:3000` (ou a porta que estiver configurada no seu projeto).
 
-### 🧪 Rodando os Testes
-
-Para executar a suíte de testes, rode o seguinte comando:
-
-```bash
-npm test
-```
-
 ---
+
+### 🔑 Credenciais de Acesso
+
+Após popular o banco de dados, você pode utilizar as seguintes credenciais para testar o acesso como administrador:
+
+**Usuário:** `gerson.admin`
+**Senha:** `adminpassword`
 
 ## 👨‍💻 Autor
 
