@@ -137,3 +137,37 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# AeroCode API (backend)
+aerocode-api/node_modules/
+aerocode-api/dist/
+aerocode-api/src/data/
+aerocode-api/coverage/
+aerocode-api/.nyc_output/
+aerocode-api/.cache/
+aerocode-api/.eslintcache
+aerocode-api/*.log
+aerocode-api/npm-debug.log*
+aerocode-api/yarn-debug.log*
+aerocode-api/yarn-error.log*
+aerocode-api/.env
+aerocode-api/.env.*
+!aerocode-api/.env.example
+
+# AeroCode GUI (frontend)
+aerocode-gui/node_modules/
+aerocode-gui/dist/
+aerocode-gui/coverage/
+aerocode-gui/.nyc_output/
+aerocode-gui/.vite/
+aerocode-gui/.cache/
+aerocode-gui/.eslintcache
+aerocode-gui/*.log
+aerocode-gui/npm-debug.log*
+aerocode-gui/yarn-debug.log*
+aerocode-gui/yarn-error.log*
+aerocode-gui/vite.config.js.timestamp-*
+aerocode-gui/vite.config.ts.timestamp-*
+aerocode-gui/.env
+aerocode-gui/.env.*
+!aerocode-gui/.env.example
