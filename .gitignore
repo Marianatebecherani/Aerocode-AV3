@@ -153,6 +153,10 @@ aerocode-api/yarn-error.log*
 aerocode-api/.env
 aerocode-api/.env.*
 !aerocode-api/.env.example
+aerocode-api/prisma/*.db
+aerocode-api/prisma/*.db-journal
+aerocode-api/prisma/*.sqlite
+aerocode-api/prisma/*.sqlite-journal
 
 # AeroCode GUI (frontend)
 aerocode-gui/node_modules/

@@ -4,10 +4,13 @@
   "description": "Backend API do sistema AeroCode.",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc && xcopy src\\data dist\\data /E /I /Y >NUL",
+    "build": "prisma generate && tsc",
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "start:dev": "tsx src/server.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "prisma:migrate": "prisma migrate dev",
     "seed": "tsx src/seeds/seed.ts"
   },
   "keywords": [],
@@ -25,9 +28,11 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "prisma": "^6.19.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   }

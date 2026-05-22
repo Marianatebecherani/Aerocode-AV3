@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum TipoAeronave {
+  COMERCIAL
+  MILITAR
+}
+
+enum TipoPeca {
+  NACIONAL
+  IMPORTADA
+}
+
+enum StatusPeca {
+  EM_PRODUCAO
+  EM_TRANSPORTE
+  PRONTA
+}
+
+enum StatusEtapa {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDA
+}
+
+enum TipoTeste {
+  ELETRICO
+  HIDRAULICO
+  AERODINAMICO
+}
+
+enum ResultadoTeste {
+  APROVADO
+  REPROVADO
+}
+
+enum NivelPermissao {
+  ADMINISTRADOR
+  ENGENHEIRO
+  OPERADOR
+}
+
+enum StatusRelatorio {
+  EM_PRODUCAO
+  FINALIZADA
+}
+
+model Aeronave {
+  codigo     String       @id @db.VarChar(20)
+  modelo     String       @db.VarChar(120)
+  tipo       TipoAeronave
+  capacidade Int
+  alcance    Int
+  pecas      Peca[]
+  etapas     Etapa[]
+  testes     Teste[]
+  relatorios Relatorio[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@map("aeronaves")
+}
+
+model Peca {
+  id             String      @id @db.VarChar(36)
+  nome           String      @db.VarChar(120)
+  tipo           TipoPeca
+  fornecedor     String      @db.VarChar(120)
+  aeronaveCodigo String      @db.VarChar(20)
+  statusTracker  Json
+  aeronave       Aeronave    @relation(fields: [aeronaveCodigo], references: [codigo], onDelete: Cascade, onUpdate: Cascade)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([aeronaveCodigo])
+  @@map("pecas")
+}
+
+model Etapa {
+  id             String        @id @db.VarChar(36)
+  nome           String        @db.VarChar(120)
+  prazoConclusao DateTime
+  prioridade     Int
+  aeronaveCodigo String        @db.VarChar(20)
+  statusTracker  Json
+  aeronave       Aeronave      @relation(fields: [aeronaveCodigo], references: [codigo], onDelete: Cascade, onUpdate: Cascade)
+  funcionarios   Funcionario[] @relation("EtapaFuncionarios")
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@unique([nome, aeronaveCodigo])
+  @@index([aeronaveCodigo])
+  @@map("etapas")
+}
+
+model Teste {
+  id               String       @id @db.VarChar(36)
+  tipo             TipoTeste
+  aeronaveCodigo   String       @db.VarChar(20)
+  resultadoTracker Json
+  aeronave         Aeronave     @relation(fields: [aeronaveCodigo], references: [codigo], onDelete: Cascade, onUpdate: Cascade)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@index([aeronaveCodigo])
+  @@map("testes")
+}
+
+model Funcionario {
+  id              String          @id @db.VarChar(36)
+  nome            String          @db.VarChar(120)
+  telefone        String          @db.VarChar(30)
+  endereco        String          @db.VarChar(255)
+  usuario         String          @unique @db.VarChar(80)
+  senha           String          @db.VarChar(255)
+  nivelPermissao  NivelPermissao
+  etapas          Etapa[]         @relation("EtapaFuncionarios")
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("funcionarios")
+}
+
+model Relatorio {
+  id             String          @id @db.VarChar(36)
+  aeronaveCodigo String          @db.VarChar(20)
+  dataEmissao    DateTime
+  status         StatusRelatorio
+  detalhes       Json
+  aeronave       Aeronave        @relation(fields: [aeronaveCodigo], references: [codigo], onDelete: Cascade, onUpdate: Cascade)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([aeronaveCodigo])
+  @@index([dataEmissao])
+  @@map("relatorios")
+}
