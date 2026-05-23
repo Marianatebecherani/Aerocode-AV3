@@ -37,6 +37,7 @@ export class AeronaveService {
     }
 
     async listar(filtros: ListarAeronavesDTO = {}): Promise<ListarAeronavesResponseDTO> {
+        const codigo = this.normalizarCodigoFiltro(filtros.codigo);
         const modelo = filtros.modelo?.trim().toLowerCase();
         const tipo = this.normalizarTipoFiltro(filtros.tipo);
         const capacidadeMin = this.normalizarInteiroNaoNegativo(filtros.capacidadeMin, "capacidadeMin");
@@ -56,6 +57,7 @@ export class AeronaveService {
 
         const aeronaves = await this.aeronaveRepository.listar();
         const aeronavesFiltradas = aeronaves.filter((aeronave) => {
+            const atendeCodigo = !codigo || aeronave.codigo.includes(codigo);
             const atendeModelo = !modelo || aeronave.modelo.toLowerCase().includes(modelo);
             const atendeTipo = !tipo || aeronave.tipo === tipo;
             const atendeCapacidadeMin = capacidadeMin === undefined || aeronave.capacidade >= capacidadeMin;
@@ -64,6 +66,7 @@ export class AeronaveService {
             const atendeAlcanceMax = alcanceMax === undefined || aeronave.alcance <= alcanceMax;
 
             return (
+                atendeCodigo &&
                 atendeModelo &&
                 atendeTipo &&
                 atendeCapacidadeMin &&
@@ -222,6 +225,14 @@ export class AeronaveService {
         }
 
         return new Date(data).toISOString();
+    }
+
+    private normalizarCodigoFiltro(codigo?: string): string | undefined {
+        if (!codigo || codigo.trim().length === 0) {
+            return undefined;
+        }
+
+        return codigo.trim().toUpperCase();
     }
 
     private normalizarTipoFiltro(tipo?: string): TipoAeronave | undefined {

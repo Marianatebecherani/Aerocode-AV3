@@ -69,6 +69,13 @@ aeronaveRoutes.post("/", async (req, res) => {
  *       - Aeronaves
  *     parameters:
  *       - in: query
+ *         name: codigo
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Busca por termo no codigo da aeronave.
+ *         example: AER-0001
+ *       - in: query
  *         name: modelo
  *         required: false
  *         schema:
@@ -168,6 +175,7 @@ aeronaveRoutes.post("/", async (req, res) => {
 aeronaveRoutes.get("/", async (req, res) => {
     try {
         const aeronaves = await aeronaveController.listar({
+            ...(typeof req.query.codigo === "string" ? { codigo: req.query.codigo } : {}),
             ...(typeof req.query.modelo === "string" ? { modelo: req.query.modelo } : {}),
             ...(typeof req.query.tipo === "string" ? { tipo: req.query.tipo } : {}),
             ...(typeof req.query.capacidadeMin === "string" ? { capacidadeMin: req.query.capacidadeMin } : {}),

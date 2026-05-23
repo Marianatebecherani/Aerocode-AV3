@@ -23,6 +23,7 @@ export type AtualizarAeronaveDTO = {
 };
 
 export type ListarAeronavesDTO = {
+    codigo?: string;
     modelo?: string;
     tipo?: string;
     capacidadeMin?: string;
