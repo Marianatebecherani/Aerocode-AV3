@@ -1,4 +1,3 @@
-import React from 'react';
 import { UserCircle, LogOut } from 'lucide-react';
 // 1. Importa o hook useAuth para pegar o nome do usuário e a função de logout
 import { useAuth } from '../context/AuthContext';

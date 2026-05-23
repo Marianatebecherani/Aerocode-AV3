@@ -436,7 +436,7 @@ function LinhaDeMontagem() {
             <tbody className="divide-y divide-gray-700">
               {etapas.length === 0 && (
                 <tr>
-                  <td colSpan="9" className="px-6 py-8 text-center text-gray-400">
+                  <td colSpan={9} className="px-6 py-8 text-center text-gray-400">
                     Nenhuma etapa encontrada para os filtros selecionados.
                   </td>
                 </tr>
@@ -620,3 +620,4 @@ function LinhaDeMontagem() {
 }
 
 export default LinhaDeMontagem;
+

@@ -1,18 +1,28 @@
-import React from 'react';
+import type { ComponentType, ReactNode } from 'react';
 
 // Mapeamento para as cores sólidas (usado na Tela 2, ProjectDetail)
 // Adicionado 'border' para um estilo mais nítido
-const solidColorStyles = {
+const solidColorStyles: Record<string, string> = {
   red: 'bg-red-800/60 border-red-600',
   gray: 'bg-gray-700/60 border-gray-500',
 };
 
-function KpiCard({ title, value, details, Icon, colorClass, color, className = '' }) {
+type KpiCardProps = {
+  title: string;
+  value: ReactNode;
+  details?: ReactNode;
+  Icon?: ComponentType<{ className?: string }>;
+  colorClass?: string;
+  color?: string;
+  className?: string;
+};
+
+function KpiCard({ title, value, details, Icon, colorClass, color, className = '' }: KpiCardProps) {
   
   // Lógica para determinar o fundo:
   const backgroundStyle = colorClass
     ? `${colorClass} border-transparent`
-    : solidColorStyles[color] || 'bg-gray-800 border-gray-700';
+    : (color ? solidColorStyles[color] : undefined) || 'bg-gray-800 border-gray-700';
 
   // Define o tamanho da fonte com base no comprimento do texto do 'value'
   const valueSize = typeof value === 'string' && value.length > 6 ? 'text-3xl' : 'text-4xl';

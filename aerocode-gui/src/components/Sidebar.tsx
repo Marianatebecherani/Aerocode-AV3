@@ -1,5 +1,5 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import type { NavLinkRenderProps } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { canManageSystem } from '../utils/permissions';
 
@@ -20,7 +20,7 @@ function Sidebar() {
   const { user } = useAuth();
   const canManageAdminPages = canManageSystem(user);
 
-  const styleLink = ({ isActive }) =>
+  const styleLink = ({ isActive }: NavLinkRenderProps) =>
     isActive
       ? `${baseLinkStyle} ${activeLinkStyle}`
       : `${baseLinkStyle} hover:bg-gray-700 hover:text-white`;

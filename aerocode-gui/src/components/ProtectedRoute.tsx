@@ -1,9 +1,14 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Navigate, useLocation } from 'react-router-dom';
 import { hasAnyRole } from '../utils/permissions';
 
-function ProtectedRoute({ allowedRoles, children }) {
+type ProtectedRouteProps = {
+  allowedRoles?: string[];
+  children: ReactNode;
+};
+
+function ProtectedRoute({ allowedRoles, children }: ProtectedRouteProps) {
   const { user } = useAuth();
   const location = useLocation();
 

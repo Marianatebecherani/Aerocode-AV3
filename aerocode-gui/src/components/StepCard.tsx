@@ -1,7 +1,7 @@
-import React from 'react';
+import type { ComponentType } from 'react';
 import { Check } from 'lucide-react';
 
-const statusStyles = {
+const statusStyles: Record<string, { bg: string; border: string; text: string }> = {
   'Completo': {
     bg: 'bg-green-700/60', // Fundo verde semi-transparente
     border: 'border-green-500',
@@ -19,7 +19,14 @@ const statusStyles = {
   },
 };
 
-function StepCard({ step }) {
+type StepCardData = {
+  title: string;
+  status: string;
+  tasks: string[];
+  icon: ComponentType<{ className?: string }>;
+};
+
+function StepCard({ step }: { step: StepCardData }) {
   const styles = statusStyles[step.status] || statusStyles['Em Espera'];
   const Icon = step.icon;
 

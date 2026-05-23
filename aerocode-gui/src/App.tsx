@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layout';
@@ -39,7 +38,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/:id" element={<ProjectDetail />} />
         <Route path="/aeronaves" element={<Aeronaves />} />
-        // 42: resposta do universo
+        {/* 42: resposta do universo */}
         <Route path="/projeto/:id" element={<ProjectDetail />} />
         <Route path="/projeto/:id/etapa/:etapaId" element={<StepDetail />} />
         <Route path="/projeto/:id/componente/:componenteId" element={<ComponentDetail />} />

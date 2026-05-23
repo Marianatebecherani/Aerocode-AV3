@@ -1,9 +1,27 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import type { ReactNode } from 'react';
 import { api, nivelToRole } from '../services/api';
+import type { AppRole, Funcionario, NivelPermissao } from '../types/api';
 
-const AuthContext = createContext(null);
+export type AuthUser = {
+  id: string | number;
+  username: string;
+  name: string;
+  role: AppRole;
+  nivelPermissao: NivelPermissao;
+  telefone: string;
+  endereco: string;
+};
 
-function normalizeFuncionario(funcionario) {
+type AuthContextValue = {
+  user: AuthUser | null;
+  login: (username: string, password: string) => Promise<boolean>;
+  logout: () => void;
+};
+
+const AuthContext = createContext<AuthContextValue | null>(null);
+
+function normalizeFuncionario(funcionario?: Funcionario): AuthUser | null {
   if (!funcionario) return null;
 
   return {
@@ -17,8 +35,12 @@ function normalizeFuncionario(funcionario) {
   };
 }
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
+type AuthProviderProps = {
+  children: ReactNode;
+};
+
+export function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<AuthUser | null>(() => {
     try {
       const storedUser = localStorage.getItem('aerocode_user');
       return storedUser ? JSON.parse(storedUser) : null;
@@ -28,7 +50,7 @@ export function AuthProvider({ children }) {
     }
   });
 
-  const login = async (username, password) => {
+  const login = async (username: string, password: string) => {
     const resultado = await api.login({
       usuario: username,
       senha: password,

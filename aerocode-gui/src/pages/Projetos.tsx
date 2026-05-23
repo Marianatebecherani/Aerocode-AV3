@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import ProjectList from '../components/ProjectList'; 
 import { useProjects } from '../context/ProjectsContext'; 
 import { X } from 'lucide-react';
@@ -14,9 +15,9 @@ function Projetos() {
   const [status, setStatus] = useState('Em Espera');
   const [progress, setProgress] = useState(0);
 
-  const handleAddProject = (e) => {
+  const handleAddProject = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const statusTypeMap = {
+    const statusTypeMap: Record<string, string> = {
       'Em Espera': 'pending',
       'Em Operação': 'warning',
       'Completo': 'success',
@@ -85,7 +86,7 @@ function Projetos() {
               </div>
               <div>
                 <label htmlFor="progress" className="block text-sm font-medium text-gray-300 mb-1">Progresso (%)</label>
-                <input type="number" id="progress" value={progress} onChange={(e) => setProgress(e.target.value)} min="0" max="100" className="w-full p-2 bg-gray-700 border border-gray-600 rounded-md" required />
+                <input type="number" id="progress" value={progress} onChange={(e) => setProgress(Number(e.target.value))} min="0" max="100" className="w-full p-2 bg-gray-700 border border-gray-600 rounded-md" required />
               </div>
               <div className="flex justify-end gap-4 mt-4">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 bg-gray-600 rounded-md hover:bg-gray-500">

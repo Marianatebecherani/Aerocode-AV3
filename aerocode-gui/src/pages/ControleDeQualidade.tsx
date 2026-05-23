@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Package, Pencil, Plus, Search, Trash2, X } from 'lucide-react';
+import { CheckSquare, ChevronLeft, ChevronRight, Pencil, Plus, Search, Trash2, X, XSquare } from 'lucide-react';
 import { api } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Modal, { DeleteConfirmationModal, SuccessModal } from '../components/Modal';
-import { canChangePartStatus, canWriteOperationalData } from '../utils/permissions';
-
-const statusStyles = {
-  EM_PRODUCAO: 'text-yellow-400',
-  EM_TRANSPORTE: 'text-blue-400',
-  PRONTA: 'text-green-400',
-};
+import { canWriteOperationalData } from '../utils/permissions';
 
 const initialFilters = {
   aeronaveCodigo: '',
   tipo: '',
-  status: '',
-  termo: '',
+  resultado: '',
   page: 1,
   limit: 5,
 };
 
-const emptyPartForm = {
-  nome: '',
-  tipo: 'NACIONAL',
-  fornecedor: '',
+const emptyTestForm = {
+  tipo: 'ELETRICO',
+  resultado: 'APROVADO',
   aeronaveCodigo: '',
 };
 
-function Inventario() {
+function ControleDeQualidade() {
   const { user } = useAuth();
-  const [pecas, setPecas] = useState([]);
+  const [testes, setTestes] = useState([]);
   const [filters, setFilters] = useState(initialFilters);
   const [draftFilters, setDraftFilters] = useState(initialFilters);
   const [paginacao, setPaginacao] = useState({
@@ -39,25 +31,24 @@ function Inventario() {
     totalPages: 0,
   });
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [newPartForm, setNewPartForm] = useState(emptyPartForm);
+  const [newTestForm, setNewTestForm] = useState(emptyTestForm);
   const [isCreating, setIsCreating] = useState(false);
-  const [editingPart, setEditingPart] = useState(null);
-  const [editPartForm, setEditPartForm] = useState(emptyPartForm);
+  const [editingTest, setEditingTest] = useState(null);
+  const [editTestForm, setEditTestForm] = useState(emptyTestForm);
   const [isEditing, setIsEditing] = useState(false);
-  const [pecaParaExcluir, setPecaParaExcluir] = useState(null);
+  const [testeParaExcluir, setTesteParaExcluir] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const canOperate = canWriteOperationalData(user);
-  const canMovePartStatus = canChangePartStatus(user);
 
-  const loadPecas = async (params = filters) => {
+  const loadTestes = async (params = filters) => {
     setLoading(true);
     setError('');
     try {
-      const response = await api.listarPecas(params);
-      setPecas(response.dados || []);
+      const response = await api.listarTestes(params);
+      setTestes(response.dados || []);
       setPaginacao(response.paginacao || {
         total: 0,
         page: params.page,
@@ -72,7 +63,7 @@ function Inventario() {
   };
 
   useEffect(() => {
-    loadPecas(filters);
+    loadTestes(filters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
@@ -110,19 +101,19 @@ function Inventario() {
     setFilters((current) => ({ ...current, limit: normalizedLimit, page: 1 }));
   };
 
-  const moveStatus = async (id, direction) => {
-    if (!canMovePartStatus) {
+  const updateResultado = async (id, resultado) => {
+    if (!canOperate) {
       setError('Seu perfil possui acesso somente leitura.');
       return;
     }
 
     try {
-      if (direction === 'next') {
-        await api.prosseguirPeca(id);
+      if (resultado === 'APROVADO') {
+        await api.aprovarTeste(id);
       } else {
-        await api.retrocederPeca(id);
+        await api.reprovarTeste(id);
       }
-      await loadPecas(filters);
+      await loadTestes(filters);
     } catch (err) {
       setError(err.message);
     }
@@ -130,7 +121,7 @@ function Inventario() {
 
   const openCreateModal = () => {
     setError('');
-    setNewPartForm(emptyPartForm);
+    setNewTestForm(emptyTestForm);
     setIsCreateModalOpen(true);
   };
 
@@ -140,64 +131,21 @@ function Inventario() {
     }
   };
 
-  const openEditModal = (peca) => {
-    setError('');
-    setEditingPart(peca);
-    setEditPartForm({
-      nome: peca.nome || '',
-      tipo: peca.tipo || 'NACIONAL',
-      fornecedor: peca.fornecedor || '',
-      aeronaveCodigo: peca.aeronaveCodigo || '',
-    });
-  };
-
-  const closeEditModal = () => {
-    if (!isEditing) {
-      setEditingPart(null);
-    }
-  };
-
-  const handleEditPart = async (e) => {
-    e.preventDefault();
-    if (!editingPart) return;
-
-    setIsEditing(true);
-    setError('');
-
-    try {
-      await api.atualizarPeca(editingPart.id, {
-        nome: editPartForm.nome.trim(),
-        tipo: editPartForm.tipo,
-        fornecedor: editPartForm.fornecedor.trim(),
-        aeronaveCodigo: editPartForm.aeronaveCodigo.trim(),
-      });
-      setEditingPart(null);
-      setEditPartForm(emptyPartForm);
-      setSuccessMessage('Peça atualizada com sucesso.');
-      await loadPecas(filters);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsEditing(false);
-    }
-  };
-
-  const handleCreatePart = async (e) => {
+  const handleCreateTest = async (e) => {
     e.preventDefault();
     setIsCreating(true);
     setError('');
 
     try {
-      await api.criarPeca({
-        nome: newPartForm.nome.trim(),
-        tipo: newPartForm.tipo,
-        fornecedor: newPartForm.fornecedor.trim(),
-        aeronaveCodigo: newPartForm.aeronaveCodigo.trim(),
+      await api.criarTeste({
+        tipo: newTestForm.tipo,
+        resultado: newTestForm.resultado,
+        aeronaveCodigo: newTestForm.aeronaveCodigo.trim(),
       });
       setIsCreateModalOpen(false);
-      setNewPartForm(emptyPartForm);
-      setSuccessMessage('Peça cadastrada com sucesso.');
-      await loadPecas(filters);
+      setNewTestForm(emptyTestForm);
+      setSuccessMessage('Teste cadastrado com sucesso.');
+      await loadTestes(filters);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -205,17 +153,58 @@ function Inventario() {
     }
   };
 
-  const handleDeletePart = async () => {
-    if (!pecaParaExcluir) return;
+  const openEditModal = (teste) => {
+    const resultado = teste.resultadoTracker?.atual?.resultado || 'APROVADO';
+
+    setError('');
+    setEditingTest(teste);
+    setEditTestForm({
+      tipo: teste.tipo || 'ELETRICO',
+      resultado,
+      aeronaveCodigo: teste.aeronaveCodigo || '',
+    });
+  };
+
+  const closeEditModal = () => {
+    if (!isEditing) {
+      setEditingTest(null);
+    }
+  };
+
+  const handleEditTest = async (e) => {
+    e.preventDefault();
+    if (!editingTest) return;
+
+    setIsEditing(true);
+    setError('');
+
+    try {
+      await api.atualizarTeste(editingTest.id, {
+        tipo: editTestForm.tipo,
+        aeronaveCodigo: editTestForm.aeronaveCodigo.trim(),
+      });
+      setEditingTest(null);
+      setEditTestForm(emptyTestForm);
+      setSuccessMessage('Teste atualizado com sucesso.');
+      await loadTestes(filters);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsEditing(false);
+    }
+  };
+
+  const handleDeleteTest = async () => {
+    if (!testeParaExcluir) return;
 
     setIsDeleting(true);
     setError('');
 
     try {
-      await api.deletarPeca(pecaParaExcluir.id);
-      setPecaParaExcluir(null);
-      setSuccessMessage('Peça excluída com sucesso.');
-      await loadPecas(filters);
+      await api.deletarTeste(testeParaExcluir.id);
+      setTesteParaExcluir(null);
+      setSuccessMessage('Teste excluído com sucesso.');
+      await loadTestes(filters);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -225,12 +214,12 @@ function Inventario() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex justify-between items-center gap-4">
+      <header className="flex justify-between items-center gap-4">
         <div className="flex items-center gap-3">
-          <Package className="w-8 h-8 text-blue-400" />
+          <CheckSquare className="w-8 h-8 text-blue-400" />
           <div>
-            <h1 className="text-3xl font-bold text-white">Peças</h1>
-            <p className="text-gray-400">Rastreamento de componentes por aeronave.</p>
+            <h1 className="text-3xl font-bold text-white">Testes</h1>
+            <p className="text-gray-400">Controle de qualidade por teste elétrico, hidráulico e aerodinâmico.</p>
           </div>
         </div>
         {canOperate && (
@@ -240,13 +229,13 @@ function Inventario() {
             className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
           >
             <Plus className="w-5 h-5" />
-            Nova Peça
+            Novo Teste
           </button>
         )}
-      </div>
+      </header>
 
       <form onSubmit={handleSubmit} className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
           <div>
             <label htmlFor="aeronaveCodigo" className="block text-sm font-medium text-gray-300 mb-1">Aeronave</label>
             <input
@@ -267,35 +256,24 @@ function Inventario() {
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Todos</option>
-              <option value="NACIONAL">Nacional</option>
-              <option value="IMPORTADA">Importada</option>
+              <option value="ELETRICO">Elétrico</option>
+              <option value="HIDRAULICO">Hidráulico</option>
+              <option value="AERODINAMICO">Aerodinâmico</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="status" className="block text-sm font-medium text-gray-300 mb-1">Status</label>
+            <label htmlFor="resultado" className="block text-sm font-medium text-gray-300 mb-1">Resultado</label>
             <select
-              id="status"
-              value={draftFilters.status}
-              onChange={(e) => handleFilterChange('status', e.target.value)}
+              id="resultado"
+              value={draftFilters.resultado}
+              onChange={(e) => handleFilterChange('resultado', e.target.value)}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Todos</option>
-              <option value="EM_PRODUCAO">Em producao</option>
-              <option value="EM_TRANSPORTE">Em transporte</option>
-              <option value="PRONTA">Pronta</option>
+              <option value="APROVADO">Aprovado</option>
+              <option value="REPROVADO">Reprovado</option>
             </select>
-          </div>
-
-          <div>
-            <label htmlFor="termo" className="block text-sm font-medium text-gray-300 mb-1">Termo</label>
-            <input
-              id="termo"
-              value={draftFilters.termo}
-              onChange={(e) => handleFilterChange('termo', e.target.value)}
-              placeholder="nome ou fornecedor"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
           </div>
 
           <div>
@@ -327,68 +305,64 @@ function Inventario() {
 
       {error && <div className="bg-red-900/40 border border-red-700 text-red-200 rounded-lg p-4">{error}</div>}
       {loading ? (
-        <p className="text-gray-300">Carregando peças...</p>
+        <p className="text-gray-300">Carregando testes...</p>
       ) : (
         <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <table className="min-w-full">
+          <table className="min-w-full divide-y divide-gray-700">
             <thead className="bg-gray-700">
               <tr>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">ID</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Nome</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Tipo</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Aeronave</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Fornecedor</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Status</th>
-                <th className="py-3 px-6 text-left text-sm font-semibold text-gray-300 uppercase">Atualização</th>
-                <th className="py-3 px-6 text-right text-sm font-semibold text-gray-300 uppercase">Alterar status</th>
-                <th className="py-3 px-6 text-right text-sm font-semibold text-gray-300 uppercase">Ações</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">ID</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Tipo</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Aeronave</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Resultado</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Atualização</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Alterar resultado</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
-              {pecas.length === 0 && (
+              {testes.length === 0 && (
                 <tr>
-                  <td colSpan="9" className="px-6 py-8 text-center text-gray-400">
-                    Nenhuma peça encontrada para os filtros selecionados.
+                  <td colSpan={7} className="px-6 py-8 text-center text-gray-400">
+                    Nenhum teste encontrado para os filtros selecionados.
                   </td>
                 </tr>
               )}
-              {pecas.map((peca) => {
-                const dataAtualizacao = peca.statusTracker?.atual?.data;
-
+              {testes.map((teste) => {
+                const resultado = teste.resultadoTracker?.atual?.resultado;
+                const dataAtualizacao = teste.resultadoTracker?.atual?.data;
                 return (
-                  <tr key={peca.id} className="hover:bg-gray-700/50">
-                    <td className="py-4 px-6 text-sm font-medium text-white">{peca.id}</td>
-                    <td className="py-4 px-6 text-sm text-gray-300">{peca.nome}</td>
-                    <td className="py-4 px-6 text-sm text-gray-300">{peca.tipo}</td>
-                    <td className="py-4 px-6 text-sm text-gray-300">{peca.aeronaveCodigo}</td>
-                    <td className="py-4 px-6 text-sm text-gray-300">{peca.fornecedor}</td>
-                    <td className={`py-4 px-6 text-sm font-medium ${statusStyles[peca.statusTracker?.atual?.status] || 'text-gray-400'}`}>
-                      {peca.statusTracker?.atual?.status || 'N/A'}
+                  <tr key={teste.id} className="hover:bg-gray-700/50">
+                    <td className="px-6 py-4 text-sm text-white">{teste.id}</td>
+                    <td className="px-6 py-4 text-sm text-gray-300">{teste.tipo}</td>
+                    <td className="px-6 py-4 text-sm text-gray-300">{teste.aeronaveCodigo}</td>
+                    <td className={`px-6 py-4 text-sm font-semibold ${resultado === 'REPROVADO' ? 'text-red-400' : 'text-green-400'}`}>
+                      {resultado || 'N/A'}
                     </td>
-                    <td className="py-4 px-6 text-sm text-gray-300">
+                    <td className="px-6 py-4 text-sm text-gray-300">
                       {dataAtualizacao ? new Date(dataAtualizacao).toLocaleString('pt-BR') : 'Sem data'}
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="px-6 py-4 text-right">
                       <button
-                        onClick={() => moveStatus(peca.id, 'previous')}
-                        disabled={!canMovePartStatus}
-                        className="text-gray-300 hover:text-white mr-3 disabled:opacity-40 disabled:cursor-not-allowed"
-                        title={canMovePartStatus ? 'Retroceder status' : 'Acesso somente leitura'}
+                        onClick={() => updateResultado(teste.id, 'APROVADO')}
+                        disabled={!canOperate}
+                        className="text-green-400 hover:text-green-300 mr-3 disabled:opacity-40 disabled:cursor-not-allowed"
+                        title={canOperate ? 'Aprovar' : 'Acesso somente leitura'}
                       >
-                        <ArrowLeft className="w-5 h-5" />
+                        <CheckSquare className="w-5 h-5" />
                       </button>
                       <button
-                        onClick={() => moveStatus(peca.id, 'next')}
-                        disabled={!canMovePartStatus}
-                        className="text-blue-400 hover:text-blue-300 disabled:opacity-40 disabled:cursor-not-allowed"
-                        title={canMovePartStatus ? 'Avançar status' : 'Acesso somente leitura'}
+                        onClick={() => updateResultado(teste.id, 'REPROVADO')}
+                        disabled={!canOperate}
+                        className="text-red-400 hover:text-red-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                        title={canOperate ? 'Reprovar' : 'Acesso somente leitura'}
                       >
-                        <ArrowRight className="w-5 h-5" />
+                        <XSquare className="w-5 h-5" />
                       </button>
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="px-6 py-4 text-right">
                       <button
-                        onClick={() => openEditModal(peca)}
+                        onClick={() => openEditModal(teste)}
                         disabled={!canOperate}
                         className="text-blue-400 hover:text-blue-300 mr-3 disabled:opacity-40 disabled:cursor-not-allowed"
                         title={canOperate ? 'Editar' : 'Acesso somente leitura'}
@@ -396,7 +370,7 @@ function Inventario() {
                         <Pencil className="w-5 h-5" />
                       </button>
                       <button
-                        onClick={() => setPecaParaExcluir(peca)}
+                        onClick={() => setTesteParaExcluir(teste)}
                         disabled={!canOperate}
                         className="text-red-400 hover:text-red-300 disabled:opacity-40 disabled:cursor-not-allowed"
                         title={canOperate ? 'Excluir' : 'Acesso somente leitura'}
@@ -412,7 +386,7 @@ function Inventario() {
 
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-6 py-4 border-t border-gray-700">
             <p className="text-sm text-gray-400">
-              {paginacao.total} peça(s) encontradas - página {paginacao.totalPages ? paginacao.page : 0} de {paginacao.totalPages}
+              {paginacao.total} teste(s) encontrados - página {paginacao.totalPages ? paginacao.page : 0} de {paginacao.totalPages}
             </p>
             <div className="flex items-center gap-3">
               <button
@@ -439,9 +413,9 @@ function Inventario() {
       <Modal
         isOpen={isCreateModalOpen}
         onClose={closeCreateModal}
-        title="Nova Peça"
-        description="Informe os dados da peça e a aeronave vinculada ao componente."
-        icon={Package}
+        title="Novo Teste"
+        description="Informe a aeronave, o tipo de teste e o resultado inicial da inspeção."
+        icon={CheckSquare}
         maxWidth="max-w-lg"
         footer={(
           <>
@@ -455,63 +429,53 @@ function Inventario() {
             </button>
             <button
               type="submit"
-              form="create-part-form"
+              form="create-test-form"
               disabled={isCreating}
               className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isCreating ? 'Salvando...' : 'Salvar peça'}
+              {isCreating ? 'Salvando...' : 'Salvar teste'}
             </button>
           </>
         )}
       >
-        <form id="create-part-form" onSubmit={handleCreatePart} className="grid grid-cols-1 gap-4">
+        <form id="create-test-form" onSubmit={handleCreateTest} className="grid grid-cols-1 gap-4">
           <div>
-            <label htmlFor="new-part-nome" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+            <label htmlFor="new-test-aeronave" className="block text-sm font-medium text-gray-300 mb-1">Aeronave</label>
             <input
-              id="new-part-nome"
-              value={newPartForm.nome}
-              onChange={(e) => setNewPartForm((current) => ({ ...current, nome: e.target.value }))}
-              placeholder="Motor"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="new-part-tipo" className="block text-sm font-medium text-gray-300 mb-1">Tipo</label>
-            <select
-              id="new-part-tipo"
-              value={newPartForm.tipo}
-              onChange={(e) => setNewPartForm((current) => ({ ...current, tipo: e.target.value }))}
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="NACIONAL">Nacional</option>
-              <option value="IMPORTADA">Importada</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="new-part-fornecedor" className="block text-sm font-medium text-gray-300 mb-1">Fornecedor</label>
-            <input
-              id="new-part-fornecedor"
-              value={newPartForm.fornecedor}
-              onChange={(e) => setNewPartForm((current) => ({ ...current, fornecedor: e.target.value }))}
-              placeholder="Embraer"
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="new-part-aeronave" className="block text-sm font-medium text-gray-300 mb-1">Aeronave</label>
-            <input
-              id="new-part-aeronave"
-              value={newPartForm.aeronaveCodigo}
-              onChange={(e) => setNewPartForm((current) => ({ ...current, aeronaveCodigo: e.target.value }))}
+              id="new-test-aeronave"
+              value={newTestForm.aeronaveCodigo}
+              onChange={(e) => setNewTestForm((current) => ({ ...current, aeronaveCodigo: e.target.value }))}
               placeholder="AER-0001"
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+          </div>
+
+          <div>
+            <label htmlFor="new-test-tipo" className="block text-sm font-medium text-gray-300 mb-1">Tipo</label>
+            <select
+              id="new-test-tipo"
+              value={newTestForm.tipo}
+              onChange={(e) => setNewTestForm((current) => ({ ...current, tipo: e.target.value }))}
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="ELETRICO">Elétrico</option>
+              <option value="HIDRAULICO">Hidráulico</option>
+              <option value="AERODINAMICO">Aerodinâmico</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="new-test-resultado" className="block text-sm font-medium text-gray-300 mb-1">Resultado</label>
+            <select
+              id="new-test-resultado"
+              value={newTestForm.resultado}
+              onChange={(e) => setNewTestForm((current) => ({ ...current, resultado: e.target.value }))}
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="APROVADO">Aprovado</option>
+              <option value="REPROVADO">Reprovado</option>
+            </select>
           </div>
         </form>
       </Modal>
@@ -524,11 +488,11 @@ function Inventario() {
       />
 
       <Modal
-        isOpen={Boolean(editingPart)}
+        isOpen={Boolean(editingTest)}
         onClose={closeEditModal}
-        title="Editar Peça"
-        description="Atualize os dados da peça selecionada."
-        icon={Package}
+        title="Editar Teste"
+        description="Atualize o tipo e a aeronave vinculada. O resultado deve ser alterado pela coluna Alterar resultado."
+        icon={CheckSquare}
         maxWidth="max-w-lg"
         footer={(
           <>
@@ -542,7 +506,7 @@ function Inventario() {
             </button>
             <button
               type="submit"
-              form="edit-part-form"
+              form="edit-test-form"
               disabled={isEditing}
               className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
@@ -551,65 +515,55 @@ function Inventario() {
           </>
         )}
       >
-        <form id="edit-part-form" onSubmit={handleEditPart} className="grid grid-cols-1 gap-4">
+        <form id="edit-test-form" onSubmit={handleEditTest} className="grid grid-cols-1 gap-4">
           <div>
-            <label htmlFor="edit-part-nome" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+            <label htmlFor="edit-test-aeronave" className="block text-sm font-medium text-gray-300 mb-1">Aeronave</label>
             <input
-              id="edit-part-nome"
-              value={editPartForm.nome}
-              onChange={(e) => setEditPartForm((current) => ({ ...current, nome: e.target.value }))}
+              id="edit-test-aeronave"
+              value={editTestForm.aeronaveCodigo}
+              onChange={(e) => setEditTestForm((current) => ({ ...current, aeronaveCodigo: e.target.value }))}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="edit-part-tipo" className="block text-sm font-medium text-gray-300 mb-1">Tipo</label>
+            <label htmlFor="edit-test-tipo" className="block text-sm font-medium text-gray-300 mb-1">Tipo</label>
             <select
-              id="edit-part-tipo"
-              value={editPartForm.tipo}
-              onChange={(e) => setEditPartForm((current) => ({ ...current, tipo: e.target.value }))}
+              id="edit-test-tipo"
+              value={editTestForm.tipo}
+              onChange={(e) => setEditTestForm((current) => ({ ...current, tipo: e.target.value }))}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="NACIONAL">Nacional</option>
-              <option value="IMPORTADA">Importada</option>
+              <option value="ELETRICO">Elétrico</option>
+              <option value="HIDRAULICO">Hidráulico</option>
+              <option value="AERODINAMICO">Aerodinâmico</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="edit-part-fornecedor" className="block text-sm font-medium text-gray-300 mb-1">Fornecedor</label>
+            <label htmlFor="edit-test-resultado" className="block text-sm font-medium text-gray-300 mb-1">Resultado</label>
             <input
-              id="edit-part-fornecedor"
-              value={editPartForm.fornecedor}
-              onChange={(e) => setEditPartForm((current) => ({ ...current, fornecedor: e.target.value }))}
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="edit-part-aeronave" className="block text-sm font-medium text-gray-300 mb-1">Aeronave</label>
-            <input
-              id="edit-part-aeronave"
-              value={editPartForm.aeronaveCodigo}
-              onChange={(e) => setEditPartForm((current) => ({ ...current, aeronaveCodigo: e.target.value }))}
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
+              id="edit-test-resultado"
+              value={editTestForm.resultado}
+              className="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-gray-400 cursor-not-allowed"
+              readOnly
             />
           </div>
         </form>
       </Modal>
 
       <DeleteConfirmationModal
-        isOpen={Boolean(pecaParaExcluir)}
-        onClose={() => setPecaParaExcluir(null)}
-        onConfirm={handleDeletePart}
-        itemLabel={pecaParaExcluir ? `a peça ${pecaParaExcluir.nome}` : 'esta peça'}
-        title="Excluir peça"
+        isOpen={Boolean(testeParaExcluir)}
+        onClose={() => setTesteParaExcluir(null)}
+        onConfirm={handleDeleteTest}
+        itemLabel={testeParaExcluir ? `o teste #${testeParaExcluir.id}` : 'este teste'}
+        title="Excluir teste"
         isLoading={isDeleting}
       />
     </div>
   );
 }
 
-export default Inventario;
+export default ControleDeQualidade;
+

@@ -414,7 +414,7 @@ function Aeronaves() {
             <tbody className="divide-y divide-gray-700">
               {aeronaves.length === 0 && (
                 <tr>
-                  <td colSpan="9" className="px-6 py-8 text-center text-gray-400">
+                  <td colSpan={9} className="px-6 py-8 text-center text-gray-400">
                     Nenhuma aeronave encontrada para os filtros selecionados.
                   </td>
                 </tr>
@@ -571,3 +571,4 @@ function Aeronaves() {
 }
 
 export default Aeronaves;
+

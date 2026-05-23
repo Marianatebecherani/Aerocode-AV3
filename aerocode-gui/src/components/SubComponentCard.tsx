@@ -1,7 +1,7 @@
-import React from 'react';
+import type { ComponentType } from 'react';
 
 // Mapeamento de status para cores
-const statusStyles = {
+const statusStyles: Record<string, { bg: string; border: string; text: string; iconColor: string }> = {
   success: {
     bg: 'bg-gray-800',
     border: 'border-green-500',
@@ -16,7 +16,15 @@ const statusStyles = {
   },
 };
 
-function SubComponentCard({ component }) {
+type SubComponentCardData = {
+  title: string;
+  status: string;
+  statusType: string;
+  lastUpdate: string;
+  icon: ComponentType<{ className?: string }>;
+};
+
+function SubComponentCard({ component }: { component: SubComponentCardData }) {
   // Pega o estilo ou um padrão
   const styles = statusStyles[component.statusType] || {
     bg: 'bg-gray-800',

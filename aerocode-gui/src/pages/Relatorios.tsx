@@ -299,7 +299,7 @@ function Relatorios() {
             <tbody className="divide-y divide-gray-700">
               {relatorios.length === 0 && (
                 <tr>
-                  <td colSpan="8" className="px-6 py-8 text-center text-gray-400">
+                  <td colSpan={8} className="px-6 py-8 text-center text-gray-400">
                     Nenhum relatório encontrado para os filtros selecionados.
                   </td>
                 </tr>
@@ -567,3 +567,4 @@ function Relatorios() {
 }
 
 export default Relatorios;
+

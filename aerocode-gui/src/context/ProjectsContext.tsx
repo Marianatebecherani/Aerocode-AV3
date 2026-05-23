@@ -1,7 +1,41 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
 import { api } from '../services/api';
+import type { Aeronave, AeronaveDetalhes, DashboardResumo } from '../types/api';
 
-const ProjectsContext = createContext(null);
+type ProjectStatusType = 'error' | 'warning' | 'success' | 'pending';
+
+export type Project = {
+  id: string;
+  codigo: string;
+  title: string;
+  description: string;
+  idNumber: string;
+  value: string;
+  status: string;
+  statusType: ProjectStatusType;
+  progress: number;
+  aeronave: Aeronave;
+};
+
+type EtapasResumo = {
+  total: number;
+  concluidas: number;
+};
+
+type ProjectsContextValue = {
+  aeronaves: Aeronave[];
+  dashboardResumo: DashboardResumo | null;
+  etapasResumo: EtapasResumo;
+  projects: Project[];
+  loading: boolean;
+  error: string;
+  refresh: () => Promise<void>;
+  addProject: (project: unknown) => void;
+  fetchAeronaveDetalhes: (codigo: string) => Promise<AeronaveDetalhes>;
+};
+
+const ProjectsContext = createContext<ProjectsContextValue | null>(null);
 
 const statusRank = {
   PENDENTE: 0,
@@ -9,15 +43,16 @@ const statusRank = {
   CONCLUIDA: 100,
 };
 
-function calculateProgress(aeronave) {
+function calculateProgress(aeronave: Aeronave) {
   if (!aeronave.etapas?.length) return 0;
   const total = aeronave.etapas.reduce((sum, etapa) => {
-    return sum + (statusRank[etapa.statusTracker?.atual?.status] ?? 0);
+    const status = etapa.statusTracker?.atual?.status;
+    return sum + (status ? statusRank[status] : 0);
   }, 0);
   return Math.round(total / aeronave.etapas.length);
 }
 
-function calculateStatusType(aeronave) {
+function calculateStatusType(aeronave: Aeronave): ProjectStatusType {
   const testes = aeronave.testes || [];
   const etapas = aeronave.etapas || [];
   const pecas = aeronave.pecas || [];
@@ -40,7 +75,7 @@ function calculateStatusType(aeronave) {
   return 'pending';
 }
 
-function projectFromAeronave(aeronave) {
+function projectFromAeronave(aeronave: Aeronave): Project {
   const progress = calculateProgress(aeronave);
   const statusType = calculateStatusType(aeronave);
   const statusLabel = {
@@ -64,10 +99,14 @@ function projectFromAeronave(aeronave) {
   };
 }
 
-export function ProjectsProvider({ children }) {
-  const [aeronaves, setAeronaves] = useState([]);
+type ProjectsProviderProps = {
+  children: ReactNode;
+};
+
+export function ProjectsProvider({ children }: ProjectsProviderProps) {
+  const [aeronaves, setAeronaves] = useState<Aeronave[]>([]);
   const [etapasResumo, setEtapasResumo] = useState({ total: 0, concluidas: 0 });
-  const [dashboardResumo, setDashboardResumo] = useState(null);
+  const [dashboardResumo, setDashboardResumo] = useState<DashboardResumo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -87,7 +126,7 @@ export function ProjectsProvider({ children }) {
         concluidas: dashboardResponse?.etapas?.concluidas || 0,
       });
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'Erro ao carregar dados.');
     } finally {
       setLoading(false);
     }
@@ -107,6 +146,7 @@ export function ProjectsProvider({ children }) {
     loading,
     error,
     refresh: loadDashboardData,
+    addProject: () => undefined,
     fetchAeronaveDetalhes: api.buscarDetalhesAeronave,
   };
 

@@ -199,7 +199,7 @@ function Configuracoes() {
     }
 
     try {
-      const payload = {
+      const payload: Record<string, unknown> = {
         nome: editForm.nome.trim(),
         telefone: editForm.telefone.trim(),
         endereco: editForm.endereco.trim(),
@@ -639,3 +639,4 @@ function Configuracoes() {
 }
 
 export default Configuracoes;
+

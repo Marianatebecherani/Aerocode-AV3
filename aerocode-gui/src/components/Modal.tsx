@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import type { ButtonHTMLAttributes, ComponentType, ReactNode } from 'react';
 import { AlertTriangle, CheckCircle, Trash2, X } from 'lucide-react';
 
-const variantStyles = {
+type ModalVariant = 'default' | 'danger' | 'success';
+type ButtonVariant = 'secondary' | 'primary' | 'danger' | 'success';
+
+const variantStyles: Record<ModalVariant, { iconWrap: string; confirmButton: string }> = {
   default: {
     iconWrap: 'bg-blue-500/15 text-blue-300 border-blue-500/30',
     confirmButton: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500',
@@ -16,6 +20,19 @@ const variantStyles = {
   },
 };
 
+type ModalProps = {
+  isOpen: boolean;
+  onClose?: () => void;
+  title: string;
+  description?: string;
+  icon?: ComponentType<{ className?: string }>;
+  variant?: ModalVariant;
+  children?: ReactNode;
+  footer?: ReactNode;
+  closeOnBackdrop?: boolean;
+  maxWidth?: string;
+};
+
 function Modal({
   isOpen,
   onClose,
@@ -27,13 +44,13 @@ function Modal({
   footer,
   closeOnBackdrop = true,
   maxWidth = 'max-w-md',
-}) {
+}: ModalProps) {
   const styles = variantStyles[variant] || variantStyles.default;
 
   useEffect(() => {
     if (!isOpen) return undefined;
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose?.();
       }
@@ -98,7 +115,12 @@ function Modal({
   );
 }
 
-function ModalButton({ children, variant = 'secondary', isLoading = false, ...props }) {
+type ModalButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariant;
+  isLoading?: boolean;
+};
+
+function ModalButton({ children, variant = 'secondary', isLoading = false, ...props }: ModalButtonProps) {
   const baseClass = 'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-60';
   const variantClass = {
     secondary: 'bg-gray-700 text-gray-200 hover:bg-gray-600 focus:ring-gray-500',
@@ -114,6 +136,17 @@ function ModalButton({ children, variant = 'secondary', isLoading = false, ...pr
   );
 }
 
+type ConfirmationModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title?: string;
+  description?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  isLoading?: boolean;
+};
+
 export function ConfirmationModal({
   isOpen,
   onClose,
@@ -123,7 +156,7 @@ export function ConfirmationModal({
   confirmLabel = 'Confirmar',
   cancelLabel = 'Cancelar',
   isLoading = false,
-}) {
+}: ConfirmationModalProps) {
   return (
     <Modal
       isOpen={isOpen}
@@ -147,6 +180,10 @@ export function ConfirmationModal({
   );
 }
 
+type DeleteConfirmationModalProps = ConfirmationModalProps & {
+  itemLabel?: string;
+};
+
 export function DeleteConfirmationModal({
   isOpen,
   onClose,
@@ -157,7 +194,7 @@ export function DeleteConfirmationModal({
   confirmLabel = 'Excluir',
   cancelLabel = 'Cancelar',
   isLoading = false,
-}) {
+}: DeleteConfirmationModalProps) {
   return (
     <Modal
       isOpen={isOpen}
@@ -181,13 +218,21 @@ export function DeleteConfirmationModal({
   );
 }
 
+type FeedbackModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  description?: string;
+  confirmLabel?: string;
+};
+
 export function SuccessModal({
   isOpen,
   onClose,
   title = 'Operação realizada',
   description = 'A solicitação foi concluída com sucesso.',
   confirmLabel = 'Entendi',
-}) {
+}: FeedbackModalProps) {
   return (
     <Modal
       isOpen={isOpen}
@@ -211,7 +256,7 @@ export function ErrorModal({
   title = 'Não foi possível concluir',
   description = 'A solicitação não pode ser concluída.',
   confirmLabel = 'Entendi',
-}) {
+}: FeedbackModalProps) {
   return (
     <Modal
       isOpen={isOpen}

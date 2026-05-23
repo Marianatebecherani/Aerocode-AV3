@@ -1,8 +1,15 @@
 import { mockApi } from './mockApi';
+import type {
+  ApiClient,
+  AppRole,
+  LoginPayload,
+  NivelPermissao,
+  QueryParams,
+} from '../types/api';
 
 const API_BASE = '/api/v1';
 
-async function request(path, options = {}) {
+async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +18,7 @@ async function request(path, options = {}) {
     ...options,
   });
 
-  if (response.status === 204) return null;
+  if (response.status === 204) return null as T;
 
   const data = await response.json().catch(() => null);
 
@@ -22,19 +29,19 @@ async function request(path, options = {}) {
   return data;
 }
 
-const withQuery = (path, params = {}) => {
+const withQuery = (path: string, params: QueryParams = {}) => {
   const query = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
-      query.set(key, value);
+      query.set(key, String(value));
     }
   });
   const suffix = query.toString();
   return suffix ? `${path}?${suffix}` : path;
 };
 
-const backendApi = {
-  login: (payload) => request('/auth/login', {
+const backendApi: ApiClient = {
+  login: (payload: LoginPayload) => request('/auth/login', {
     method: 'POST',
     body: JSON.stringify(payload),
   }),
@@ -121,10 +128,10 @@ const backendApi = {
 
 const useMockApi = import.meta.env.VITE_USE_MOCK_API !== 'false';
 
-export const api = useMockApi ? mockApi : backendApi;
+export const api: ApiClient = useMockApi ? mockApi as ApiClient : backendApi;
 
-export function nivelToRole(nivelPermissao) {
-  const map = {
+export function nivelToRole(nivelPermissao: NivelPermissao): AppRole {
+  const map: Record<NivelPermissao, AppRole> = {
     ADMINISTRADOR: 'admin',
     ENGENHEIRO: 'engenheiro',
     OPERADOR: 'operador',
@@ -132,8 +139,8 @@ export function nivelToRole(nivelPermissao) {
   return map[nivelPermissao] || 'operador';
 }
 
-export function roleToNivel(role) {
-  const map = {
+export function roleToNivel(role: AppRole): NivelPermissao {
+  const map: Record<AppRole, NivelPermissao> = {
     admin: 'ADMINISTRADOR',
     engenheiro: 'ENGENHEIRO',
     operador: 'OPERADOR',

@@ -1,8 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { AlertCircle, CheckCircle, ChevronLeft, ChevronRight, Clock, Package, XCircle } from 'lucide-react';
+import type { Paginacao } from '../types/api';
+import type { Project } from '../context/ProjectsContext';
 
-const getStatusVisuals = (statusType) => {
+const getStatusVisuals = (statusType: Project['statusType']) => {
   switch (statusType) {
     case 'success':
       return { icon: CheckCircle, color: 'text-green-500' };
@@ -16,7 +17,13 @@ const getStatusVisuals = (statusType) => {
   }
 };
 
-function ProjectList({ projects, paginacao, onPageChange }) {
+type ProjectListProps = {
+  projects: Project[];
+  paginacao?: Paginacao;
+  onPageChange?: (page: number) => void;
+};
+
+function ProjectList({ projects, paginacao, onPageChange }: ProjectListProps) {
   const total = paginacao?.total ?? projects.length;
   const currentPage = paginacao?.page ?? 1;
   const totalPages = paginacao?.totalPages ?? 0;
@@ -78,7 +85,7 @@ function ProjectList({ projects, paginacao, onPageChange }) {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => onPageChange(currentPage - 1)}
+              onClick={() => onPageChange?.(currentPage - 1)}
               disabled={!onPageChange || currentPage <= 1}
               className="flex items-center gap-2 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -87,7 +94,7 @@ function ProjectList({ projects, paginacao, onPageChange }) {
             </button>
             <button
               type="button"
-              onClick={() => onPageChange(currentPage + 1)}
+              onClick={() => onPageChange?.(currentPage + 1)}
               disabled={!onPageChange || currentPage >= totalPages}
               className="flex items-center gap-2 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 disabled:opacity-40 disabled:cursor-not-allowed"
             >
