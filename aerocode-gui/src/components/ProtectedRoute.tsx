@@ -2,9 +2,10 @@ import type { ReactNode } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Navigate, useLocation } from 'react-router-dom';
 import { hasAnyRole } from '../utils/permissions';
+import type { AppRole } from '../types/api';
 
 type ProtectedRouteProps = {
-  allowedRoles?: string[];
+  allowedRoles?: AppRole[];
   children: ReactNode;
 };
 
