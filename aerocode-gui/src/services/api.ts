@@ -1,4 +1,4 @@
-import { mockApi } from './mockApi';
+import { mockApi } from '../mocks/api';
 import type {
   ApiClient,
   AppRole,
@@ -126,7 +126,7 @@ const backendApi: ApiClient = {
   buscarDashboard: (params) => request(withQuery('/dashboard', params)),
 };
 
-const useMockApi = import.meta.env.VITE_USE_MOCK_API !== 'false';
+const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
 
 export const api: ApiClient = useMockApi ? mockApi as ApiClient : backendApi;
 

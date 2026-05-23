@@ -1,214 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { seedData } from './data/seedData';
+import { makeResultadoTracker, makeStatusTracker, now } from './utils/trackers';
+
 const STORAGE_KEY = 'aerocode_mock_db';
 
-const now = () => new Date().toISOString();
-
-const makeStatusTracker = (status, history = []) => {
-  const data = now();
-  const historico = history.length ? history : [{ status, data }];
-  return {
-    atual: historico[historico.length - 1],
-    historico,
-  };
-};
-
-const makeResultadoTracker = (resultado) => {
-  const data = now();
-  return {
-    atual: { resultado, data },
-    historico: [{ resultado, data }],
-  };
-};
-
-const seedData = {
-  counters: {
-    aeronave: 4,
-    etapa: 7,
-    peca: 8,
-    teste: 6,
-    funcionario: 4,
-    relatorio: 3,
-  },
-  funcionarios: [
-    {
-      id: 1,
-      nome: 'Gerson Administrador',
-      telefone: '(11) 90000-0001',
-      endereco: 'Hangar Central',
-      usuario: 'gerson.admin',
-      senha: 'adminpassword',
-      nivelPermissao: 'ADMINISTRADOR',
-      funcao: 'Administrador',
-    },
-    {
-      id: 2,
-      nome: 'Mariana Engenheira',
-      telefone: '(11) 90000-0002',
-      endereco: 'Setor de Engenharia',
-      usuario: 'mariana.eng',
-      senha: 'engpassword',
-      nivelPermissao: 'ENGENHEIRO',
-      funcao: 'Engenheira',
-    },
-    {
-      id: 3,
-      nome: 'Joao Operador',
-      telefone: '(11) 90000-0003',
-      endereco: 'Linha de montagem',
-      usuario: 'joao.op',
-      senha: 'oppassword',
-      nivelPermissao: 'OPERADOR',
-      funcao: 'Operador',
-    },
-  ],
-  aeronaves: [
-    {
-      codigo: 'AER-0001',
-      modelo: 'Embraer E195-E2',
-      tipo: 'COMERCIAL',
-      capacidade: 146,
-      alcance: 4815,
-    },
-    {
-      codigo: 'AER-0002',
-      modelo: 'KC-390 Millennium',
-      tipo: 'MILITAR',
-      capacidade: 80,
-      alcance: 6130,
-    },
-    {
-      codigo: 'AER-0003',
-      modelo: 'Phenom 300E',
-      tipo: 'COMERCIAL',
-      capacidade: 10,
-      alcance: 3723,
-    },
-  ],
-  etapas: [
-    {
-      id: 1,
-      nome: 'Montagem estrutural',
-      prazoConclusao: '2026-05-22',
-      prioridade: 1,
-      ordemExecucao: 1,
-      aeronaveCodigo: 'AER-0001',
-      funcionariosIds: [2, 3],
-      statusTracker: makeStatusTracker('EM_ANDAMENTO'),
-    },
-    {
-      id: 2,
-      nome: 'Instalacao eletrica',
-      prazoConclusao: '2026-05-28',
-      prioridade: 2,
-      ordemExecucao: 2,
-      aeronaveCodigo: 'AER-0001',
-      funcionariosIds: [2],
-      statusTracker: makeStatusTracker('PENDENTE'),
-    },
-    {
-      id: 3,
-      nome: 'Integracao hidraulica',
-      prazoConclusao: '2026-05-30',
-      prioridade: 1,
-      ordemExecucao: 1,
-      aeronaveCodigo: 'AER-0002',
-      funcionariosIds: [3],
-      statusTracker: makeStatusTracker('CONCLUIDA'),
-    },
-    {
-      id: 4,
-      nome: 'Inspecao final',
-      prazoConclusao: '2026-06-02',
-      prioridade: 3,
-      ordemExecucao: 2,
-      aeronaveCodigo: 'AER-0002',
-      funcionariosIds: [],
-      statusTracker: makeStatusTracker('EM_ANDAMENTO'),
-    },
-    {
-      id: 5,
-      nome: 'Preparacao de cabine',
-      prazoConclusao: '2026-06-05',
-      prioridade: 2,
-      ordemExecucao: 1,
-      aeronaveCodigo: 'AER-0003',
-      funcionariosIds: [3],
-      statusTracker: makeStatusTracker('PENDENTE'),
-    },
-  ],
-  pecas: [
-    {
-      id: 1,
-      nome: 'Motor principal',
-      tipo: 'IMPORTADA',
-      fornecedor: 'GE Aerospace',
-      aeronaveCodigo: 'AER-0001',
-      statusTracker: makeStatusTracker('EM_TRANSPORTE'),
-    },
-    {
-      id: 2,
-      nome: 'Painel avionico',
-      tipo: 'NACIONAL',
-      fornecedor: 'AeroTech Brasil',
-      aeronaveCodigo: 'AER-0001',
-      statusTracker: makeStatusTracker('EM_PRODUCAO'),
-    },
-    {
-      id: 3,
-      nome: 'Trem de pouso',
-      tipo: 'IMPORTADA',
-      fornecedor: 'Safran',
-      aeronaveCodigo: 'AER-0002',
-      statusTracker: makeStatusTracker('PRONTA'),
-    },
-    {
-      id: 4,
-      nome: 'Modulo hidraulico',
-      tipo: 'NACIONAL',
-      fornecedor: 'Hydra Sistemas',
-      aeronaveCodigo: 'AER-0002',
-      statusTracker: makeStatusTracker('PRONTA'),
-    },
-    {
-      id: 5,
-      nome: 'Assentos executivos',
-      tipo: 'NACIONAL',
-      fornecedor: 'CabinWorks',
-      aeronaveCodigo: 'AER-0003',
-      statusTracker: makeStatusTracker('EM_PRODUCAO'),
-    },
-  ],
-  testes: [
-    {
-      id: 1,
-      tipo: 'ELETRICO',
-      aeronaveCodigo: 'AER-0001',
-      data: '2026-05-10T12:00:00.000Z',
-      resultadoTracker: makeResultadoTracker('APROVADO'),
-    },
-    {
-      id: 2,
-      tipo: 'HIDRAULICO',
-      aeronaveCodigo: 'AER-0001',
-      data: '2026-05-11T12:00:00.000Z',
-      resultadoTracker: makeResultadoTracker('REPROVADO'),
-    },
-    {
-      id: 3,
-      tipo: 'AERODINAMICO',
-      aeronaveCodigo: 'AER-0002',
-      data: '2026-05-12T12:00:00.000Z',
-      resultadoTracker: makeResultadoTracker('APROVADO'),
-    },
-    {
-      id: 4,
-      tipo: 'ELETRICO',
-      aeronaveCodigo: 'AER-0003',
-      data: '2026-05-13T12:00:00.000Z',
-      resultadoTracker: makeResultadoTracker('APROVADO'),
-    },
-  ],
-  relatorios: [],
-};
+type MockParams = Record<string, any>;
+type MockDb = Record<string, any>;
+type MockItem = Record<string, any>;
 
 function clone(value) {
   return structuredClone(value);
@@ -269,8 +67,6 @@ function saveDb(nextDb = db) {
   }
 }
 
-let db;
-
 function nextId(collection) {
   const id = db.counters[collection] || 1;
   db.counters[collection] = id + 1;
@@ -291,7 +87,7 @@ function normalizeText(value) {
   return String(value || '').toLowerCase();
 }
 
-function paginate(items, params = {}) {
+function paginate(items: MockItem[], params: MockParams = {}) {
   const page = Number(params.page) || 1;
   const limit = Number(params.limit) || 10;
   const total = items.length;
@@ -318,7 +114,7 @@ function withRelations(aeronave) {
   };
 }
 
-function filterAeronaves(params = {}) {
+function filterAeronaves(params: MockParams = {}) {
   return db.aeronaves
     .filter((aeronave) => {
       if (params.codigo && !normalizeText(aeronave.codigo).includes(normalizeText(params.codigo))) return false;
@@ -341,7 +137,7 @@ function currentResultado(item) {
   return item.resultadoTracker?.atual?.resultado;
 }
 
-function calculateDashboard(params = {}) {
+function calculateDashboard(params: MockParams = {}) {
   const aeronaves = filterAeronaves(params);
   const codigos = new Set(aeronaves.map((aeronave) => aeronave.codigo));
   const etapas = db.etapas.filter((etapa) => codigos.has(etapa.aeronaveCodigo));
@@ -396,14 +192,14 @@ function findById(collection, id, label) {
   return item;
 }
 
-function makeRelatorioFromAeronave(sourceDb, aeronaveCodigo) {
+function makeRelatorioFromAeronave(sourceDb: MockDb, aeronaveCodigo: string) {
   const aeronave = sourceDb.aeronaves.find((item) => item.codigo === aeronaveCodigo);
   if (!aeronave) throw new Error('Aeronave nao encontrada.');
 
   const etapas = sourceDb.etapas.filter((etapa) => etapa.aeronaveCodigo === aeronaveCodigo);
   const pecas = sourceDb.pecas.filter((peca) => peca.aeronaveCodigo === aeronaveCodigo);
   const testes = sourceDb.testes.filter((teste) => teste.aeronaveCodigo === aeronaveCodigo);
-  const funcionariosPorId = new Map(sourceDb.funcionarios.map((funcionario) => [funcionario.id, funcionario]));
+  const funcionariosPorId = new Map<any, MockItem>(sourceDb.funcionarios.map((funcionario: MockItem) => [funcionario.id, funcionario]));
 
   const id = sourceDb.counters.relatorio++;
   return {
@@ -453,7 +249,7 @@ function filterByDate(value, start, end) {
   return true;
 }
 
-db = loadDb();
+const db: MockDb = loadDb();
 
 export const mockApi = {
   login: async ({ usuario, senha }) => {
@@ -462,7 +258,7 @@ export const mockApi = {
     return delay({ autenticado: true, funcionario });
   },
 
-  listarAeronaves: (params = {}) => delay(paginate(filterAeronaves(params), params)),
+  listarAeronaves: (params: MockParams = {}) => delay(paginate(filterAeronaves(params), params)),
 
   buscarAeronave: (codigo) => {
     const aeronave = db.aeronaves.find((item) => item.codigo === codigo);
@@ -496,7 +292,7 @@ export const mockApi = {
     return delay(null);
   },
 
-  listarPecas: (params = {}) => {
+  listarPecas: (params: MockParams = {}) => {
     const termo = normalizeText(params.termo);
     const pecas = db.pecas.filter((peca) => {
       if (params.aeronaveCodigo && !normalizeText(peca.aeronaveCodigo).includes(normalizeText(params.aeronaveCodigo))) return false;
@@ -560,7 +356,7 @@ export const mockApi = {
     }
   },
 
-  listarEtapas: (params = {}) => {
+  listarEtapas: (params: MockParams = {}) => {
     const etapas = db.etapas.filter((etapa) => {
       if (params.aeronaveCodigo && !normalizeText(etapa.aeronaveCodigo).includes(normalizeText(params.aeronaveCodigo))) return false;
       if (params.nome && !normalizeText(etapa.nome).includes(normalizeText(params.nome))) return false;
@@ -652,7 +448,7 @@ export const mockApi = {
     }
   },
 
-  listarTestes: (params = {}) => {
+  listarTestes: (params: MockParams = {}) => {
     const testes = db.testes.filter((teste) => {
       if (params.aeronaveCodigo && !normalizeText(teste.aeronaveCodigo).includes(normalizeText(params.aeronaveCodigo))) return false;
       if (params.tipo && teste.tipo !== params.tipo) return false;
@@ -708,7 +504,7 @@ export const mockApi = {
     return delay(null);
   },
 
-  listarFuncionarios: (params = {}) => {
+  listarFuncionarios: (params: MockParams = {}) => {
     const termo = normalizeText(params.termo);
     const funcionarios = db.funcionarios.filter((funcionario) => {
       if (termo && !normalizeText(`${funcionario.nome} ${funcionario.usuario}`).includes(termo)) return false;
@@ -749,7 +545,7 @@ export const mockApi = {
     return delay(null);
   },
 
-  listarRelatorios: (params = {}) => {
+  listarRelatorios: (params: MockParams = {}) => {
     const relatorios = db.relatorios.filter((relatorio) => {
       if (params.aeronaveCodigo && !normalizeText(relatorio.aeronaveCodigo).includes(normalizeText(params.aeronaveCodigo))) return false;
       if (!filterByDate(relatorio.dataEmissao, params.dataInicio, params.dataFim)) return false;
@@ -783,5 +579,5 @@ export const mockApi = {
     return delay(null);
   },
 
-  buscarDashboard: (params = {}) => delay(calculateDashboard(params)),
+  buscarDashboard: (params: MockParams = {}) => delay(calculateDashboard(params)),
 };
