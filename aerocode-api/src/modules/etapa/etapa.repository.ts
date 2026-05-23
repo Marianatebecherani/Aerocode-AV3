@@ -1,23 +1,41 @@
-import * as path from "path";
-import { PersistenceManager } from "../../shared/persistence";
+import { Prisma } from "@prisma/client";
+import { prisma } from "../../shared/prisma";
 import { Etapa, EtapaProps } from "./etapa.entity";
 
-export class EtapaRepository {
-    private readonly persistence = new PersistenceManager<Etapa>(
-        path.join(__dirname, "../../data/etapas")
-    );
+type EtapaRecord = {
+    id: string;
+    nome: string;
+    prazoConclusao: Date | string;
+    prioridade: number;
+    aeronaveCodigo: string;
+    statusTracker: unknown;
+    funcionarios?: { id: string }[];
+};
 
+export class EtapaRepository {
     async criar(etapa: Etapa): Promise<Etapa> {
-        this.persistence.save(etapa, (data) => data.toResponse());
-        return etapa;
+        const etapaCriada = await prisma.etapa.create({
+            data: this.toPrismaCreateData(etapa),
+            include: this.includeFuncionarios()
+        });
+
+        return this.hydrate(etapaCriada);
     }
 
     async listar(): Promise<Etapa[]> {
-        return this.persistence.loadAll((data) => this.hydrate(data));
+        const etapas = await prisma.etapa.findMany({
+            include: this.includeFuncionarios(),
+            orderBy: [{ aeronaveCodigo: "asc" }, { prazoConclusao: "asc" }, { prioridade: "asc" }, { id: "asc" }]
+        });
+
+        return etapas.map((etapa) => this.hydrate(etapa));
     }
 
     async gerarProximoId(): Promise<string> {
-        const etapas = await this.listar();
+        const etapas = await prisma.etapa.findMany({
+            select: { id: true }
+        });
+
         const maiorId = etapas.reduce((maior, etapa) => {
             const idNumerico = Number(etapa.id);
             return Number.isInteger(idNumerico) && idNumerico > maior ? idNumerico : maior;
@@ -27,8 +45,12 @@ export class EtapaRepository {
     }
 
     async buscarPorId(id: string): Promise<Etapa | null> {
-        const etapas = await this.listar();
-        return etapas.find((etapa) => etapa.id === id.trim()) ?? null;
+        const etapa = await prisma.etapa.findUnique({
+            where: { id: id.trim() },
+            include: this.includeFuncionarios()
+        });
+
+        return etapa ? this.hydrate(etapa) : null;
     }
 
     async buscarPorNomeEAeronave(
@@ -36,46 +58,113 @@ export class EtapaRepository {
         aeronaveCodigo: string,
         ignorarId?: string
     ): Promise<Etapa | null> {
-        const etapas = await this.listar();
-        const nomeNormalizado = this.normalizarChave(nome);
-        const aeronaveCodigoNormalizado = aeronaveCodigo.trim().toUpperCase();
+        const etapa = await prisma.etapa.findFirst({
+            where: {
+                nome: nome.trim(),
+                aeronaveCodigo: aeronaveCodigo.trim().toUpperCase(),
+                ...(ignorarId ? { id: { not: ignorarId.trim() } } : {})
+            },
+            include: this.includeFuncionarios()
+        });
 
-        return (
-            etapas.find(
-                (etapa) =>
-                    etapa.id !== ignorarId?.trim() &&
-                    this.normalizarChave(etapa.nome) === nomeNormalizado &&
-                    etapa.aeronaveCodigo === aeronaveCodigoNormalizado
-            ) ?? null
-        );
+        return etapa ? this.hydrate(etapa) : null;
     }
 
     async atualizar(id: string, etapa: Etapa): Promise<Etapa | null> {
-        const etapaExistente = await this.buscarPorId(id);
-        if (!etapaExistente) {
-            return null;
-        }
+        try {
+            const etapaAtualizada = await prisma.etapa.update({
+                where: { id: id.trim() },
+                data: this.toPrismaUpdateData(etapa),
+                include: this.includeFuncionarios()
+            });
 
-        this.persistence.save(etapa, (data) => data.toResponse());
-        return etapa;
+            return this.hydrate(etapaAtualizada);
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return null;
+            }
+
+            throw error;
+        }
     }
 
     async deletar(id: string): Promise<boolean> {
-        const etapaExistente = await this.buscarPorId(id);
-        if (!etapaExistente) {
-            return false;
+        try {
+            await prisma.etapa.delete({
+                where: { id: id.trim() }
+            });
+
+            return true;
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return false;
+            }
+
+            throw error;
         }
-
-        this.persistence.delete(id);
-        return true;
     }
 
-    private hydrate(data: unknown): Etapa {
-        const props = data as EtapaProps;
-        return new Etapa(props);
+    private hydrate(data: EtapaRecord): Etapa {
+        return new Etapa({
+            id: data.id,
+            nome: data.nome,
+            prazoConclusao: new Date(data.prazoConclusao).toISOString(),
+            prioridade: data.prioridade,
+            aeronaveCodigo: data.aeronaveCodigo,
+            funcionariosIds: data.funcionarios?.map((funcionario) => funcionario.id) ?? [],
+            statusTracker: data.statusTracker as EtapaProps["statusTracker"]
+        });
     }
 
-    private normalizarChave(nome: string): string {
-        return nome.trim().toLowerCase();
+    private toPrismaCreateData(etapa: Etapa): Prisma.EtapaCreateInput {
+        return {
+            id: etapa.id,
+            nome: etapa.nome,
+            prazoConclusao: new Date(etapa.prazoConclusao),
+            prioridade: etapa.prioridade,
+            statusTracker: this.toJson(etapa.toResponse().statusTracker),
+            aeronave: {
+                connect: { codigo: etapa.aeronaveCodigo }
+            },
+            funcionarios: {
+                connect: etapa.funcionariosIds.map((id) => ({ id }))
+            }
+        };
+    }
+
+    private toPrismaUpdateData(etapa: Etapa): Prisma.EtapaUpdateInput {
+        return {
+            nome: etapa.nome,
+            prazoConclusao: new Date(etapa.prazoConclusao),
+            prioridade: etapa.prioridade,
+            statusTracker: this.toJson(etapa.toResponse().statusTracker),
+            aeronave: {
+                connect: { codigo: etapa.aeronaveCodigo }
+            },
+            funcionarios: {
+                set: etapa.funcionariosIds.map((id) => ({ id }))
+            }
+        };
+    }
+
+    private includeFuncionarios() {
+        return {
+            funcionarios: {
+                select: { id: true }
+            }
+        };
+    }
+
+    private toJson(value: unknown): Prisma.InputJsonValue {
+        return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+    }
+
+    private isRegistroNaoEncontrado(error: unknown): boolean {
+        return (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            error.code === "P2025"
+        );
     }
 }

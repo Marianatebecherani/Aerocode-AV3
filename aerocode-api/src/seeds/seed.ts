@@ -13,7 +13,19 @@ import { RelatorioRepository } from "../modules/relatorio/relatorio.repository";
 import { determinarStatusRelatorio } from "../modules/relatorio/relatorio-status";
 import { Teste } from "../modules/teste/teste.entity";
 import { TesteRepository } from "../modules/teste/teste.repository";
+import { prisma } from "../shared/prisma";
 import { aeronaves, etapas, funcionarios, pecas, testes } from "./seed-data";
+
+async function limparBanco(): Promise<void> {
+    await prisma.$transaction([
+        prisma.relatorio.deleteMany(),
+        prisma.teste.deleteMany(),
+        prisma.etapa.deleteMany(),
+        prisma.peca.deleteMany(),
+        prisma.funcionario.deleteMany(),
+        prisma.aeronave.deleteMany()
+    ]);
+}
 
 async function popularAeronaves(): Promise<number> {
     const repository = new AeronaveRepository();
@@ -108,6 +120,8 @@ async function popularRelatorios(): Promise<number> {
 }
 
 async function executarSeed(): Promise<void> {
+    await limparBanco();
+
     const totalAeronaves = await popularAeronaves();
     const totalFuncionarios = await popularFuncionarios();
     const totalPecas = await popularPecas();
@@ -124,8 +138,12 @@ async function executarSeed(): Promise<void> {
     console.log(`Relatorios: ${totalRelatorios}`);
 }
 
-executarSeed().catch((error) => {
-    const message = error instanceof Error ? error.message : "Erro desconhecido ao executar seed.";
-    console.error(`Erro ao executar seed: ${message}`);
-    process.exit(1);
-});
+executarSeed()
+    .catch((error) => {
+        const message = error instanceof Error ? error.message : "Erro desconhecido ao executar seed.";
+        console.error(`Erro ao executar seed: ${message}`);
+        process.exitCode = 1;
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });

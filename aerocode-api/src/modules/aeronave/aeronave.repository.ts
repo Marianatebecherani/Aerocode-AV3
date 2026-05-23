@@ -1,23 +1,34 @@
-import * as path from "path";
-import { PersistenceManager } from "../../shared/persistence";
+import { TipoAeronave as PrismaTipoAeronave } from "@prisma/client";
+import { prisma } from "../../shared/prisma";
 import { Aeronave, AeronaveProps } from "./aeronave.entity";
 
 export class AeronaveRepository {
-    private readonly persistence = new PersistenceManager<Aeronave>(
-        path.join(__dirname, "../../data/aeronaves")
-    );
-
     async criar(aeronave: Aeronave): Promise<Aeronave> {
-        this.persistence.save(aeronave, (data) => data.toPersistence());
-        return aeronave;
+        const aeronaveCriada = await prisma.aeronave.create({
+            data: this.toPrismaData(aeronave)
+        });
+
+        return this.hydrate(aeronaveCriada);
     }
 
     async listar(): Promise<Aeronave[]> {
-        return this.persistence.loadAll((data) => this.hydrate(data));
+        const aeronaves = await prisma.aeronave.findMany({
+            orderBy: { codigo: "asc" }
+        });
+
+        return aeronaves.map((aeronave) => this.hydrate(aeronave));
     }
 
     async gerarProximoCodigo(): Promise<string> {
-        const aeronaves = await this.listar();
+        const aeronaves = await prisma.aeronave.findMany({
+            select: { codigo: true },
+            where: {
+                codigo: {
+                    startsWith: "AER-"
+                }
+            }
+        });
+
         const maiorCodigo = aeronaves.reduce((maior, aeronave) => {
             const match = aeronave.codigo.match(/^AER-(\d{4})$/);
             if (!match) {
@@ -32,32 +43,66 @@ export class AeronaveRepository {
     }
 
     async buscarPorCodigo(codigo: string): Promise<Aeronave | null> {
-        const aeronaves = await this.listar();
-        return aeronaves.find((aeronave) => aeronave.codigo === codigo.trim()) ?? null;
+        const aeronave = await prisma.aeronave.findUnique({
+            where: { codigo: codigo.trim() }
+        });
+
+        return aeronave ? this.hydrate(aeronave) : null;
     }
 
     async atualizar(codigo: string, aeronave: Aeronave): Promise<Aeronave | null> {
-        const aeronaveExistente = await this.buscarPorCodigo(codigo);
-        if (!aeronaveExistente) {
-            return null;
-        }
+        try {
+            const aeronaveAtualizada = await prisma.aeronave.update({
+                where: { codigo: codigo.trim() },
+                data: this.toPrismaData(aeronave)
+            });
 
-        this.persistence.save(aeronave, (data) => data.toPersistence());
-        return aeronave;
+            return this.hydrate(aeronaveAtualizada);
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return null;
+            }
+
+            throw error;
+        }
     }
 
     async deletar(codigo: string): Promise<boolean> {
-        const aeronaveExistente = await this.buscarPorCodigo(codigo);
-        if (!aeronaveExistente) {
-            return false;
-        }
+        try {
+            await prisma.aeronave.delete({
+                where: { codigo: codigo.trim() }
+            });
 
-        this.persistence.delete(codigo);
-        return true;
+            return true;
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return false;
+            }
+
+            throw error;
+        }
     }
 
-    private hydrate(data: unknown): Aeronave {
-        const props = data as AeronaveProps;
-        return new Aeronave(props);
+    private hydrate(data: AeronaveProps): Aeronave {
+        return new Aeronave(data);
+    }
+
+    private toPrismaData(aeronave: Aeronave) {
+        return {
+            codigo: aeronave.codigo,
+            modelo: aeronave.modelo,
+            tipo: aeronave.tipo as unknown as PrismaTipoAeronave,
+            capacidade: aeronave.capacidade,
+            alcance: aeronave.alcance
+        };
+    }
+
+    private isRegistroNaoEncontrado(error: unknown): boolean {
+        return (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            error.code === "P2025"
+        );
     }
 }

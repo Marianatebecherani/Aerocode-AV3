@@ -1,23 +1,36 @@
-import * as path from "path";
-import { PersistenceManager } from "../../shared/persistence";
+import { Prisma, TipoTeste as PrismaTipoTeste } from "@prisma/client";
+import { prisma } from "../../shared/prisma";
 import { Teste, TesteProps } from "./teste.entity";
 
-export class TesteRepository {
-    private readonly persistence = new PersistenceManager<Teste>(
-        path.join(__dirname, "../../data/testes")
-    );
+type TesteRecord = {
+    id: string;
+    tipo: string;
+    aeronaveCodigo: string;
+    resultadoTracker: unknown;
+};
 
+export class TesteRepository {
     async criar(teste: Teste): Promise<Teste> {
-        this.persistence.save(teste, (data) => data.toResponse());
-        return teste;
+        const testeCriado = await prisma.teste.create({
+            data: this.toPrismaData(teste)
+        });
+
+        return this.hydrate(testeCriado);
     }
 
     async listar(): Promise<Teste[]> {
-        return this.persistence.loadAll((data) => this.hydrate(data));
+        const testes = await prisma.teste.findMany({
+            orderBy: { id: "asc" }
+        });
+
+        return testes.map((teste) => this.hydrate(teste));
     }
 
     async gerarProximoId(): Promise<string> {
-        const testes = await this.listar();
+        const testes = await prisma.teste.findMany({
+            select: { id: true }
+        });
+
         const maiorId = testes.reduce((maior, teste) => {
             const idNumerico = Number(teste.id);
             return Number.isInteger(idNumerico) && idNumerico > maior ? idNumerico : maior;
@@ -27,32 +40,74 @@ export class TesteRepository {
     }
 
     async buscarPorId(id: string): Promise<Teste | null> {
-        const testes = await this.listar();
-        return testes.find((teste) => teste.id === id.trim()) ?? null;
+        const teste = await prisma.teste.findUnique({
+            where: { id: id.trim() }
+        });
+
+        return teste ? this.hydrate(teste) : null;
     }
 
     async atualizar(id: string, teste: Teste): Promise<Teste | null> {
-        const testeExistente = await this.buscarPorId(id);
-        if (!testeExistente) {
-            return null;
-        }
+        try {
+            const testeAtualizado = await prisma.teste.update({
+                where: { id: id.trim() },
+                data: this.toPrismaData(teste)
+            });
 
-        this.persistence.save(teste, (data) => data.toResponse());
-        return teste;
+            return this.hydrate(testeAtualizado);
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return null;
+            }
+
+            throw error;
+        }
     }
 
     async deletar(id: string): Promise<boolean> {
-        const testeExistente = await this.buscarPorId(id);
-        if (!testeExistente) {
-            return false;
-        }
+        try {
+            await prisma.teste.delete({
+                where: { id: id.trim() }
+            });
 
-        this.persistence.delete(id);
-        return true;
+            return true;
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return false;
+            }
+
+            throw error;
+        }
     }
 
-    private hydrate(data: unknown): Teste {
-        const props = data as TesteProps;
-        return new Teste(props);
+    private hydrate(data: TesteRecord): Teste {
+        return new Teste({
+            id: data.id,
+            tipo: data.tipo,
+            aeronaveCodigo: data.aeronaveCodigo,
+            resultadoTracker: data.resultadoTracker as TesteProps["resultadoTracker"]
+        });
+    }
+
+    private toPrismaData(teste: Teste) {
+        return {
+            id: teste.id,
+            tipo: teste.tipo as unknown as PrismaTipoTeste,
+            aeronaveCodigo: teste.aeronaveCodigo,
+            resultadoTracker: this.toJson(teste.toResponse().resultadoTracker)
+        };
+    }
+
+    private toJson(value: unknown): Prisma.InputJsonValue {
+        return JSON.parse(JSON.stringify(value)) as Prisma.InputJsonValue;
+    }
+
+    private isRegistroNaoEncontrado(error: unknown): boolean {
+        return (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            error.code === "P2025"
+        );
     }
 }

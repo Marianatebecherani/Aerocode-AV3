@@ -1,23 +1,29 @@
-import * as path from "path";
-import { PersistenceManager } from "../../shared/persistence";
+import { NivelPermissao as PrismaNivelPermissao } from "@prisma/client";
+import { prisma } from "../../shared/prisma";
 import { Funcionario, FuncionarioProps } from "./funcionario.entity";
 
 export class FuncionarioRepository {
-    private readonly persistence = new PersistenceManager<Funcionario>(
-        path.join(__dirname, "../../data/funcionarios")
-    );
-
     async criar(funcionario: Funcionario): Promise<Funcionario> {
-        this.persistence.save(funcionario);
-        return funcionario;
+        const funcionarioCriado = await prisma.funcionario.create({
+            data: this.toPrismaData(funcionario)
+        });
+
+        return this.hydrate(funcionarioCriado);
     }
 
     async listar(): Promise<Funcionario[]> {
-        return this.persistence.loadAll((data) => this.hydrate(data));
+        const funcionarios = await prisma.funcionario.findMany({
+            orderBy: { id: "asc" }
+        });
+
+        return funcionarios.map((funcionario) => this.hydrate(funcionario));
     }
 
     async gerarProximoId(): Promise<string> {
-        const funcionarios = await this.listar();
+        const funcionarios = await prisma.funcionario.findMany({
+            select: { id: true }
+        });
+
         const maiorId = funcionarios.reduce((maior, funcionario) => {
             const idNumerico = Number(funcionario.id);
             return Number.isInteger(idNumerico) && idNumerico > maior ? idNumerico : maior;
@@ -27,43 +33,76 @@ export class FuncionarioRepository {
     }
 
     async buscarPorId(id: string): Promise<Funcionario | null> {
-        const funcionarios = await this.listar();
-        return funcionarios.find((funcionario) => funcionario.id === id.trim()) ?? null;
+        const funcionario = await prisma.funcionario.findUnique({
+            where: { id: id.trim() }
+        });
+
+        return funcionario ? this.hydrate(funcionario) : null;
     }
 
     async buscarPorUsuario(usuario: string): Promise<Funcionario | null> {
-        const funcionarios = await this.listar();
-        return funcionarios.find(
-            (funcionario) => this.normalizarChave(funcionario.usuario) === this.normalizarChave(usuario)
-        ) ?? null;
+        const funcionario = await prisma.funcionario.findFirst({
+            where: { usuario: usuario.trim() }
+        });
+
+        return funcionario ? this.hydrate(funcionario) : null;
     }
 
     async atualizar(id: string, funcionario: Funcionario): Promise<Funcionario | null> {
-        const funcionarioExistente = await this.buscarPorId(id);
-        if (!funcionarioExistente) {
-            return null;
-        }
+        try {
+            const funcionarioAtualizado = await prisma.funcionario.update({
+                where: { id: id.trim() },
+                data: this.toPrismaData(funcionario)
+            });
 
-        this.persistence.save(funcionario);
-        return funcionario;
+            return this.hydrate(funcionarioAtualizado);
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return null;
+            }
+
+            throw error;
+        }
     }
 
     async deletar(id: string): Promise<boolean> {
-        const funcionarioExistente = await this.buscarPorId(id);
-        if (!funcionarioExistente) {
-            return false;
+        try {
+            await prisma.funcionario.delete({
+                where: { id: id.trim() }
+            });
+
+            return true;
+        } catch (error) {
+            if (this.isRegistroNaoEncontrado(error)) {
+                return false;
+            }
+
+            throw error;
         }
-
-        this.persistence.delete(id);
-        return true;
     }
 
-    private hydrate(data: unknown): Funcionario {
-        const props = data as FuncionarioProps;
-        return new Funcionario(props);
+    private hydrate(data: FuncionarioProps): Funcionario {
+        return new Funcionario(data);
     }
 
-    private normalizarChave(valor: string): string {
-        return valor.trim().toLowerCase();
+    private toPrismaData(funcionario: Funcionario) {
+        return {
+            id: funcionario.id,
+            nome: funcionario.nome,
+            telefone: funcionario.telefone,
+            endereco: funcionario.endereco,
+            usuario: funcionario.usuario,
+            senha: funcionario.senha,
+            nivelPermissao: funcionario.nivelPermissao as unknown as PrismaNivelPermissao
+        };
+    }
+
+    private isRegistroNaoEncontrado(error: unknown): boolean {
+        return (
+            typeof error === "object" &&
+            error !== null &&
+            "code" in error &&
+            error.code === "P2025"
+        );
     }
 }
