@@ -1,0 +1,21 @@
+nome,tipo,fornecedor,aeronaveCodigo
+Motor Turbofan,NACIONAL,Embraer,AER-0001
+Trem de Pouso,IMPORTADA,Boeing,AER-0002
+Painel Eletrônico,NACIONAL,Atech,AER-0003
+Asa Esquerda,IMPORTADA,Airbus,AER-0004
+Asa Direita,NACIONAL,Embraer,AER-0001
+Fuselagem Central,IMPORTADA,Bombardier,AER-0002
+Sistema Hidráulico,NACIONAL,AKAER,AER-0003
+Radar de Navegação,IMPORTADA,Comac,AER-0004
+Sensor de Pressão,NACIONAL,Embraer,AER-0001
+Unidade de Controle,IMPORTADA,Honeywell,AER-0002
+Motor Auxiliar,NACIONAL,Embraer,AER-0003
+Porta de Carga,IMPORTADA,Airbus,AER-0004
+Sistema de Freios,NACIONAL,Fras-le,AER-0001
+Tanque de Combustível,IMPORTADA,Boeing,AER-0002
+Estabilizador Vertical,NACIONAL,Embraer,AER-0003
+Estabilizador Horizontal,IMPORTADA,Bombardier,AER-0004
+Sensor de Temperatura,NACIONAL,Atech,AER-0001
+Bomba de Combustível,IMPORTADA,Honeywell,AER-0002
+Atuador Hidráulico,NACIONAL,AKAER,AER-0003
+Computador de Bordo,IMPORTADA,Thales,AER-0004

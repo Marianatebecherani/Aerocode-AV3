@@ -1,0 +1,21 @@
+nome,tipo,fornecedor,aeronaveCodigo
+Motor Turbofan Revisado,NACIONAL,Embraer,AER-0001
+Trem de Pouso Atualizado,IMPORTADA,Boeing,AER-0002
+Painel Eletrônico Calibrado,NACIONAL,Atech,AER-0003
+Asa Esquerda Inspecionada,IMPORTADA,Airbus,AER-0004
+Asa Direita Reforçada,NACIONAL,Embraer,AER-0001
+Fuselagem Central Revisada,IMPORTADA,Bombardier,AER-0002
+Sistema Hidráulico Testado,NACIONAL,AKAER,AER-0003
+Radar de Navegação Atualizado,IMPORTADA,Comac,AER-0004
+Sensor de Pressão Calibrado,NACIONAL,Embraer,AER-0001
+Unidade de Controle Revisada,IMPORTADA,Honeywell,AER-0002
+Motor Auxiliar Recondicionado,NACIONAL,Embraer,AER-0003
+Porta de Carga Reforçada,IMPORTADA,Airbus,AER-0004
+Sistema de Freios Revisado,NACIONAL,Fras-le,AER-0001
+Tanque de Combustível Testado,IMPORTADA,Boeing,AER-0002
+Estabilizador Vertical Ajustado,NACIONAL,Embraer,AER-0003
+Estabilizador Horizontal Reforçado,IMPORTADA,Bombardier,AER-0004
+Sensor de Temperatura Atualizado,NACIONAL,Atech,AER-0001
+Bomba de Combustível Revisada,IMPORTADA,Honeywell,AER-0002
+Atuador Hidráulico Calibrado,NACIONAL,AKAER,AER-0003
+Computador de Bordo Atualizado,IMPORTADA,Thales,AER-0004

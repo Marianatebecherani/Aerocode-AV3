@@ -1,0 +1,501 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1779635872514,34,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14558,165,1,1,http://localhost:3000/api/v1/aeronaves,34,0,2
+1779635872549,8,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,1,1,http://localhost:3000/api/v1/etapas,8,0,0
+1779635872557,5,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,1,1,http://localhost:3000/api/v1/funcionarios,5,0,0
+1779635872563,7,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,1,1,http://localhost:3000/api/v1/pecas,7,0,0
+1779635872570,11,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,1,1,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635872581,7,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,1,1,http://localhost:3000/api/v1/testes,7,0,0
+1779635872588,16,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,578,341,1,1,http://localhost:3000/api/v1/pecas,16,0,0
+1779635872605,12,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,582,354,1,1,http://localhost:3000/api/v1/pecas/21,12,0,0
+1779635872618,4,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,582,164,1,1,http://localhost:3000/api/v1/pecas/21,4,0,0
+1779635872622,7,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,1,1,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635872630,21,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14558,165,1,1,http://localhost:3000/api/v1/aeronaves,21,0,0
+1779635872651,10,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,1,1,http://localhost:3000/api/v1/etapas,10,0,0
+1779635872662,5,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,1,1,http://localhost:3000/api/v1/funcionarios,5,0,0
+1779635872668,6,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,1,1,http://localhost:3000/api/v1/pecas,6,0,0
+1779635872674,7,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,1,1,http://localhost:3000/api/v1/relatorios,6,0,0
+1779635872681,5,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,1,1,http://localhost:3000/api/v1/testes,5,0,0
+1779635872688,12,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,577,340,1,1,http://localhost:3000/api/v1/pecas,12,0,0
+1779635872701,11,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,583,355,1,1,http://localhost:3000/api/v1/pecas/21,11,0,0
+1779635872713,3,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,583,164,1,1,http://localhost:3000/api/v1/pecas/21,3,0,0
+1779635872717,11,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,2,2,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635872718,25,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,14558,165,2,2,http://localhost:3000/api/v1/aeronaves,25,0,1
+1779635872729,35,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14558,165,2,2,http://localhost:3000/api/v1/aeronaves,35,0,0
+1779635872743,24,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,24,0,0
+1779635872768,8,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,8,0,0
+1779635872764,16,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,16,0,0
+1779635872776,12,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,2,2,http://localhost:3000/api/v1/pecas,12,0,0
+1779635872780,11,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,11,0,0
+1779635872789,10,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,2,2,http://localhost:3000/api/v1/relatorios,10,0,0
+1779635872792,10,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,2,2,http://localhost:3000/api/v1/pecas,10,0,0
+1779635872799,10,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,2,2,http://localhost:3000/api/v1/testes,10,0,0
+1779635872802,11,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,2,2,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635872813,9,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,2,2,http://localhost:3000/api/v1/testes,9,0,0
+1779635872809,25,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,580,343,2,2,http://localhost:3000/api/v1/pecas,25,0,0
+1779635872822,16,POST /pecas,400,Bad Request,Usuarios-5 1-1,text,false,,686,339,2,2,http://localhost:3000/api/v1/pecas,16,0,0
+1779635872839,6,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-1,text,false,,308,371,2,2,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,6,0,0
+1779635872846,3,GET /pecas/{id},404,Not Found,Usuarios-5 1-1,text,false,,308,179,2,2,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,3,0,0
+1779635872834,21,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,585,357,2,2,http://localhost:3000/api/v1/pecas/21,21,0,0
+1779635872850,9,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-1,text,false,,308,201,2,2,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,9,0,0
+1779635872855,8,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,585,164,2,2,http://localhost:3000/api/v1/pecas/21,8,0,0
+1779635872859,23,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14875,165,2,2,http://localhost:3000/api/v1/aeronaves,23,0,0
+1779635872863,22,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,2,2,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635872883,17,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,17,0,0
+1779635872885,29,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,14558,165,2,2,http://localhost:3000/api/v1/aeronaves,29,0,0
+1779635872900,19,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,19,0,0
+1779635872919,11,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,11,0,0
+1779635872914,23,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,23,0,0
+1779635872930,24,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,24,0,0
+1779635872938,23,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,23,0,0
+1779635872924,45,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14558,165,3,3,http://localhost:3000/api/v1/aeronaves,45,0,2
+1779635872955,23,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,23,0,0
+1779635872962,21,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,21,0,0
+1779635872969,19,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,19,0,0
+1779635872983,11,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635872989,8,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,8,0,0
+1779635872994,8,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,8,0,0
+1779635872997,8,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,8,0,0
+1779635872978,29,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,575,338,3,3,http://localhost:3000/api/v1/pecas,29,0,0
+1779635873006,7,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,7,0,0
+1779635873013,5,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,5,0,0
+1779635873003,17,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,585,348,3,3,http://localhost:3000/api/v1/pecas,17,0,0
+1779635873008,15,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,581,353,3,3,http://localhost:3000/api/v1/pecas/21,15,0,0
+1779635873024,7,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,581,164,3,3,http://localhost:3000/api/v1/pecas/21,7,0,0
+1779635873019,15,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,581,344,3,3,http://localhost:3000/api/v1/pecas,15,0,0
+1779635873020,16,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,589,361,3,3,http://localhost:3000/api/v1/pecas/22,16,0,0
+1779635873031,9,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635873036,6,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,589,164,3,3,http://localhost:3000/api/v1/pecas/22,6,0,0
+1779635873035,15,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,584,356,3,3,http://localhost:3000/api/v1/pecas/23,15,0,0
+1779635873043,14,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635873051,13,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,584,164,3,3,http://localhost:3000/api/v1/pecas/23,13,0,0
+1779635873040,35,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,15195,165,3,3,http://localhost:3000/api/v1/aeronaves,35,0,0
+1779635873057,26,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,14874,165,3,3,http://localhost:3000/api/v1/aeronaves,26,0,0
+1779635873064,22,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635873075,22,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,22,0,0
+1779635873084,16,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,16,0,0
+1779635873097,21,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,21,0,0
+1779635873087,39,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14558,165,4,4,http://localhost:3000/api/v1/aeronaves,39,0,0
+1779635873101,27,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,27,0,0
+1779635873119,19,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,19,0,0
+1779635873126,14,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,14,0,0
+1779635873129,13,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,13,0,0
+1779635873126,32,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,4,4,http://localhost:3000/api/v1/aeronaves,32,0,1
+1779635873138,22,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,22,0,0
+1779635873140,23,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,23,0,0
+1779635873142,23,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,23,0,0
+1779635873161,13,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,13,0,0
+1779635873163,13,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,13,0,0
+1779635873158,21,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,21,0,0
+1779635873166,16,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,16,0,0
+1779635873177,12,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,12,0,0
+1779635873179,12,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,12,0,0
+1779635873193,4,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,4,0,0
+1779635873193,7,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,7,0,0
+1779635873175,26,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,583,346,4,4,http://localhost:3000/api/v1/pecas,26,0,0
+1779635873183,24,POST /pecas,400,Bad Request,Usuarios-5 1-2,text,false,,686,345,4,4,http://localhost:3000/api/v1/pecas,24,0,0
+1779635873200,13,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,13,0,0
+1779635873207,10,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-2,text,false,,308,374,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,10,0,0
+1779635873214,8,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,8,0,0
+1779635873198,27,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,586,349,4,4,http://localhost:3000/api/v1/pecas,27,0,0
+1779635873202,25,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,589,361,4,4,http://localhost:3000/api/v1/pecas/21,25,0,0
+1779635873217,12,GET /pecas/{id},404,Not Found,Usuarios-5 1-2,text,false,,308,179,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,12,0,0
+1779635873227,12,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,589,164,4,4,http://localhost:3000/api/v1/pecas/21,12,0,0
+1779635873229,15,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-2,text,false,,308,201,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,15,0,0
+1779635873225,24,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,590,362,4,4,http://localhost:3000/api/v1/pecas/22,23,0,0
+1779635873223,28,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,578,341,4,4,http://localhost:3000/api/v1/pecas,28,0,0
+1779635873239,26,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635873244,32,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,15185,165,4,4,http://localhost:3000/api/v1/aeronaves,32,0,0
+1779635873249,30,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,590,164,4,4,http://localhost:3000/api/v1/pecas/22,29,0,0
+1779635873277,18,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,18,0,0
+1779635873251,46,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,588,360,4,4,http://localhost:3000/api/v1/pecas/23,46,0,0
+1779635873279,21,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635873265,42,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,15200,165,4,4,http://localhost:3000/api/v1/aeronaves,42,0,0
+1779635873295,18,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,18,0,0
+1779635873297,21,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,588,164,5,5,http://localhost:3000/api/v1/pecas/23,21,0,0
+1779635873308,19,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,19,0,0
+1779635873301,38,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14878,165,5,5,http://localhost:3000/api/v1/aeronaves,38,0,0
+1779635873314,33,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,33,0,0
+1779635873318,33,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635873312,49,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,49,0,1
+1779635873328,37,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,37,0,0
+1779635873339,29,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,29,0,0
+1779635873347,24,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,24,0,0
+1779635873362,22,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,22,0,0
+1779635873352,44,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,44,0,0
+1779635873365,32,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,32,0,0
+1779635873368,31,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,31,0,0
+1779635873371,34,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,34,0,0
+1779635873384,28,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,28,0,0
+1779635873398,16,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,16,0,0
+1779635873396,20,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,20,0,0
+1779635873399,20,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,19,0,0
+1779635873412,12,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,12,0,0
+1779635873415,11,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,11,0,0
+1779635873417,10,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,10,0,0
+1779635873419,10,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,10,0,0
+1779635873405,28,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,578,341,5,5,http://localhost:3000/api/v1/pecas,28,0,0
+1779635873424,12,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,12,0,0
+1779635873427,11,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,11,0,0
+1779635873429,12,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,12,0,0
+1779635873436,12,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,12,0,0
+1779635873439,11,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635873426,26,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,581,344,5,5,http://localhost:3000/api/v1/pecas,26,0,0
+1779635873434,21,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,356,5,5,http://localhost:3000/api/v1/pecas/21,21,0,0
+1779635873450,10,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,10,0,0
+1779635873455,8,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,164,5,5,http://localhost:3000/api/v1/pecas/21,8,0,0
+1779635873442,25,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,586,349,5,5,http://localhost:3000/api/v1/pecas,25,0,0
+1779635873448,24,POST /pecas,400,Bad Request,Usuarios-5 1-5,text,false,,686,349,5,5,http://localhost:3000/api/v1/pecas,24,0,0
+1779635873452,22,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,585,357,5,5,http://localhost:3000/api/v1/pecas/22,22,0,0
+1779635873464,16,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635873473,9,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,377,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,9,0,0
+1779635873475,9,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,585,164,5,5,http://localhost:3000/api/v1/pecas/22,9,0,0
+1779635873460,28,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,592,355,5,5,http://localhost:3000/api/v1/pecas,28,0,0
+1779635873467,23,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,361,5,5,http://localhost:3000/api/v1/pecas/23,23,0,0
+1779635873483,13,GET /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,13,0,0
+1779635873484,16,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635873480,27,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,15198,165,5,5,http://localhost:3000/api/v1/aeronaves,27,0,0
+1779635873491,21,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,164,5,5,http://localhost:3000/api/v1/pecas/23,21,0,0
+1779635873496,22,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,22,0,0
+1779635873507,18,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,18,0,0
+1779635873488,38,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,598,370,5,5,http://localhost:3000/api/v1/pecas/24,38,0,0
+1779635873513,19,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635873501,34,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,15209,165,5,5,http://localhost:3000/api/v1/aeronaves,34,0,0
+1779635873525,16,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,16,0,0
+1779635873527,17,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,598,164,5,5,http://localhost:3000/api/v1/pecas/24,17,0,0
+1779635873519,31,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14888,165,5,5,http://localhost:3000/api/v1/aeronaves,31,0,0
+1779635873536,24,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,24,0,0
+1779635873533,38,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14888,165,5,5,http://localhost:3000/api/v1/aeronaves,38,0,0
+1779635873541,33,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,33,0,0
+1779635873544,33,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/24,0,0,0
+1779635873550,30,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,30,0,0
+1779635873560,24,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,24,0,0
+1779635873571,17,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,17,0,0
+1779635873574,16,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,16,0,0
+1779635873580,16,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,16,0,0
+1779635873585,13,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,13,0,0
+1779635873579,28,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,28,0,0
+1779635873589,21,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,21,0,0
+1779635873590,21,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,21,0,0
+1779635873596,18,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,18,0,0
+1779635873598,19,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,19,0,0
+1779635873610,12,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,12,0,0
+1779635873607,17,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,17,0,0
+1779635873614,13,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,12,0,0
+1779635873617,13,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,13,0,0
+1779635873622,13,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,13,0,0
+1779635873625,14,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,14,0,0
+1779635873627,14,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,14,0,0
+1779635873612,32,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,583,346,5,5,http://localhost:3000/api/v1/pecas,32,0,0
+1779635873635,14,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,14,0,0
+1779635873639,17,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,17,0,0
+1779635873630,29,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,588,351,5,5,http://localhost:3000/api/v1/pecas,29,0,0
+1779635873644,22,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,589,361,5,5,http://localhost:3000/api/v1/pecas/21,22,0,0
+1779635873656,13,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,12,0,0
+1779635873641,31,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,581,344,5,5,http://localhost:3000/api/v1/pecas,31,0,0
+1779635873649,27,POST /pecas,400,Bad Request,Usuarios-5 1-3,text,false,,686,346,5,5,http://localhost:3000/api/v1/pecas,27,0,0
+1779635873660,22,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,592,364,5,5,http://localhost:3000/api/v1/pecas/22,22,0,0
+1779635873666,18,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,589,164,5,5,http://localhost:3000/api/v1/pecas/21,18,0,0
+1779635873684,14,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635873673,23,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,586,358,5,5,http://localhost:3000/api/v1/pecas/23,23,0,0
+1779635873683,11,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,592,164,5,5,http://localhost:3000/api/v1/pecas/22,11,0,0
+1779635873669,18,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,18,0,0
+1779635873676,14,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,376,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,14,0,0
+1779635873699,8,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,586,164,5,5,http://localhost:3000/api/v1/pecas/23,8,0,0
+1779635873699,10,GET /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,10,0,0
+1779635873699,17,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635873699,23,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,15200,165,5,5,http://localhost:3000/api/v1/aeronaves,23,0,0
+1779635873699,27,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,578,341,5,5,http://localhost:3000/api/v1/pecas,27,0,0
+1779635873708,21,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635873709,25,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,25,0,0
+1779635873722,20,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,20,0,0
+1779635873717,39,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14863,165,5,5,http://localhost:3000/api/v1/aeronaves,39,0,0
+1779635873726,45,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,582,354,5,5,http://localhost:3000/api/v1/pecas/24,45,0,0
+1779635873730,52,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14872,165,5,5,http://localhost:3000/api/v1/aeronaves,52,0,0
+1779635873742,42,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,42,0,0
+1779635873735,61,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14872,165,5,5,http://localhost:3000/api/v1/aeronaves,61,0,0
+1779635873757,41,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,41,0,0
+1779635873772,33,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,582,164,5,5,http://localhost:3000/api/v1/pecas/24,33,0,0
+1779635873785,26,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,26,0,0
+1779635873783,31,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,31,0,0
+1779635873798,18,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,18,0,0
+1779635873796,24,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,24,0,0
+1779635873805,18,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/24,0,0,0
+1779635873811,21,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,21,0,0
+1779635873814,21,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,21,0,0
+1779635873817,22,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,22,0,0
+1779635873820,27,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,27,0,0
+1779635873824,36,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,36,0,0
+1779635873832,30,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,30,0,0
+1779635873836,28,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,28,0,0
+1779635873839,28,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,28,0,0
+1779635873847,23,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,23,0,0
+1779635873860,20,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,20,0,0
+1779635873867,15,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,15,0,0
+1779635873864,21,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,21,0,0
+1779635873870,20,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,19,0,0
+1779635873880,15,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,15,0,0
+1779635873862,35,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,577,340,5,5,http://localhost:3000/api/v1/pecas,35,0,0
+1779635873886,14,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,14,0,0
+1779635873890,13,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,13,0,0
+1779635873895,17,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,17,0,0
+1779635873883,32,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,580,343,5,5,http://localhost:3000/api/v1/pecas,32,0,0
+1779635873912,10,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,9,0,0
+1779635873898,25,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,583,355,5,5,http://localhost:3000/api/v1/pecas/21,25,0,0
+1779635873900,27,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,576,339,5,5,http://localhost:3000/api/v1/pecas,27,0,0
+1779635873903,27,POST /pecas,400,Bad Request,Usuarios-5 1-3,text,false,,686,338,5,5,http://localhost:3000/api/v1/pecas,27,0,0
+1779635873922,12,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,12,0,0
+1779635873915,23,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,585,357,5,5,http://localhost:3000/api/v1/pecas/22,23,0,0
+1779635873923,19,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,583,164,5,5,http://localhost:3000/api/v1/pecas/21,19,0,0
+1779635873931,17,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,368,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,17,0,0
+1779635873938,19,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,585,164,5,5,http://localhost:3000/api/v1/pecas/22,19,0,0
+1779635873927,33,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,584,356,5,5,http://localhost:3000/api/v1/pecas/23,33,0,0
+1779635873942,22,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635873948,24,GET /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,24,0,0
+1779635873935,43,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,585,348,5,5,http://localhost:3000/api/v1/pecas,43,0,0
+1779635873960,24,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,584,164,5,5,http://localhost:3000/api/v1/pecas/23,24,0,0
+1779635873957,29,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635873972,33,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,33,0,0
+1779635873965,51,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,15186,165,5,5,http://localhost:3000/api/v1/aeronaves,51,0,0
+1779635873984,42,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635873979,55,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,589,361,5,5,http://localhost:3000/api/v1/pecas/24,55,0,0
+1779635873987,54,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14870,165,5,5,http://localhost:3000/api/v1/aeronaves,54,0,0
+1779635874017,28,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,28,0,0
+1779635874006,47,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14879,165,5,5,http://localhost:3000/api/v1/aeronaves,46,0,0
+1779635874035,25,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,589,164,5,5,http://localhost:3000/api/v1/pecas/24,25,0,0
+1779635874027,39,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14879,165,5,5,http://localhost:3000/api/v1/aeronaves,39,0,0
+1779635874045,22,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,22,0,0
+1779635874042,28,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,28,0,0
+1779635874053,20,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,20,0,0
+1779635874061,16,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/24,0,0,0
+1779635874067,12,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,12,0,0
+1779635874070,10,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,10,0,0
+1779635874066,16,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,16,0,0
+1779635874073,12,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,12,0,0
+1779635874079,16,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,16,0,0
+1779635874080,17,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,17,0,0
+1779635874082,17,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,17,0,0
+1779635874077,28,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,28,0,0
+1779635874085,23,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,23,0,0
+1779635874095,17,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,17,0,0
+1779635874097,18,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,18,0,0
+1779635874099,18,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,18,0,0
+1779635874108,11,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635874106,17,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,17,0,0
+1779635874115,13,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,13,0,0
+1779635874117,14,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,14,0,0
+1779635874119,15,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,15,0,0
+1779635874123,13,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,13,0,0
+1779635874113,30,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,581,344,5,5,http://localhost:3000/api/v1/pecas,30,0,0
+1779635874131,14,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,14,0,0
+1779635874136,14,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,14,0,0
+1779635874129,28,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,583,346,5,5,http://localhost:3000/api/v1/pecas,28,0,0
+1779635874134,26,POST /pecas,400,Bad Request,Usuarios-5 1-3,text,false,,686,345,5,5,http://localhost:3000/api/v1/pecas,26,0,0
+1779635874150,12,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,12,0,0
+1779635874146,19,POST /pecas,400,Bad Request,Usuarios-5 1-5,text,false,,686,349,5,5,http://localhost:3000/api/v1/pecas,19,0,0
+1779635874143,26,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,356,5,5,http://localhost:3000/api/v1/pecas/21,26,0,0
+1779635874160,16,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,374,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,16,0,0
+1779635874162,16,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,16,0,0
+1779635874166,14,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,377,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,14,0,0
+1779635874169,13,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,164,5,5,http://localhost:3000/api/v1/pecas/21,13,0,0
+1779635874157,30,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,589,361,5,5,http://localhost:3000/api/v1/pecas/22,30,0,0
+1779635874176,15,GET /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,15,0,0
+1779635874180,15,GET /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,15,0,0
+1779635874182,16,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635874178,32,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,578,341,5,5,http://localhost:3000/api/v1/pecas,32,0,0
+1779635874195,18,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,18,0,0
+1779635874192,15,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,15,0,0
+1779635874187,17,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,589,164,5,5,http://localhost:3000/api/v1/pecas/22,17,0,0
+1779635874199,32,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,15184,165,5,5,http://localhost:3000/api/v1/aeronaves,32,0,0
+1779635874215,28,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635874215,44,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14863,165,5,5,http://localhost:3000/api/v1/aeronaves,44,0,0
+1779635874215,52,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14863,165,5,5,http://localhost:3000/api/v1/aeronaves,52,0,0
+1779635874215,55,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,588,360,5,5,http://localhost:3000/api/v1/pecas/23,55,0,0
+1779635874232,41,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,41,0,0
+1779635874259,33,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,33,0,0
+1779635874244,57,GET /aeronaves,200,OK,Usuarios-5 1-1,text,true,,14878,165,5,5,http://localhost:3000/api/v1/aeronaves,57,0,0
+1779635874270,34,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,588,164,5,5,http://localhost:3000/api/v1/pecas/23,34,0,0
+1779635874274,33,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,33,0,0
+1779635874268,42,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,42,0,0
+1779635874292,28,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,28,0,0
+1779635874301,23,GET /etapas,200,OK,Usuarios-5 1-1,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,23,0,0
+1779635874310,16,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,16,0,0
+1779635874307,22,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,22,0,0
+1779635874304,27,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635874321,16,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,16,0,0
+1779635874324,14,GET /funcionarios,200,OK,Usuarios-5 1-1,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,14,0,0
+1779635874327,20,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,20,0,0
+1779635874329,26,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,25,0,0
+1779635874337,50,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,50,0,0
+1779635874338,54,GET /pecas,200,OK,Usuarios-5 1-1,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,54,0,0
+1779635874347,50,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,50,0,0
+1779635874332,71,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,5,5,http://localhost:3000/api/v1/aeronaves,71,0,0
+1779635874355,52,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,52,0,0
+1779635874387,30,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,30,0,0
+1779635874392,28,GET /relatorios,200,OK,Usuarios-5 1-1,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,28,0,0
+1779635874398,25,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,25,0,0
+1779635874404,24,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,24,0,0
+1779635874421,16,GET /testes,200,OK,Usuarios-5 1-1,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,16,0,0
+1779635874428,11,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,5,5,http://localhost:3000/api/v1/funcionarios,11,0,0
+1779635874407,36,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,578,341,5,5,http://localhost:3000/api/v1/pecas,36,0,0
+1779635874418,29,POST /pecas,400,Bad Request,Usuarios-5 1-3,text,false,,686,349,5,5,http://localhost:3000/api/v1/pecas,29,0,0
+1779635874423,29,POST /pecas,400,Bad Request,Usuarios-5 1-5,text,false,,686,344,5,5,http://localhost:3000/api/v1/pecas,29,0,0
+1779635874439,18,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,5,5,http://localhost:3000/api/v1/pecas,18,0,0
+1779635874447,16,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,376,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,16,0,0
+1779635874452,13,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,372,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,12,0,0
+1779635874457,10,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,5,5,http://localhost:3000/api/v1/relatorios,10,0,0
+1779635874437,31,POST /pecas,201,Created,Usuarios-5 1-1,text,true,,586,349,5,5,http://localhost:3000/api/v1/pecas,31,0,0
+1779635874464,6,GET /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,6,0,0
+1779635874443,30,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,356,5,5,http://localhost:3000/api/v1/pecas/21,29,0,0
+1779635874465,10,GET /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,179,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,10,0,0
+1779635874467,10,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,5,5,http://localhost:3000/api/v1/testes,10,0,0
+1779635874471,11,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-3,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,11,0,0
+1779635874473,11,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,584,164,5,5,http://localhost:3000/api/v1/pecas/21,11,0,0
+1779635874475,12,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,201,5,5,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,12,0,0
+1779635874469,20,PATCH /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,590,362,5,5,http://localhost:3000/api/v1/pecas/22,20,0,0
+1779635874484,17,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635874482,23,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,15196,165,5,5,http://localhost:3000/api/v1/aeronaves,23,0,0
+1779635874489,17,GET /pecas/{id},200,OK,Usuarios-5 1-1,text,true,,590,164,5,5,http://localhost:3000/api/v1/pecas/22,17,0,0
+1779635874478,35,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,592,355,5,5,http://localhost:3000/api/v1/pecas,35,0,0
+1779635874487,28,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14880,165,5,5,http://localhost:3000/api/v1/aeronaves,28,0,0
+1779635874505,21,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,5,5,http://localhost:3000/api/v1/etapas,21,0,0
+1779635874507,22,DELETE /pecas/{id},204,No Content,Usuarios-5 1-1,,true,,166,186,5,5,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635874515,16,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,16,0,0
+1779635874502,41,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,14877,165,4,4,http://localhost:3000/api/v1/aeronaves,41,0,0
+1779635874513,32,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,598,370,4,4,http://localhost:3000/api/v1/pecas/23,32,0,0
+1779635874526,22,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,22,0,0
+1779635874532,18,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,18,0,0
+1779635874543,11,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,11,0,0
+1779635874546,10,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,598,164,4,4,http://localhost:3000/api/v1/pecas/23,10,0,0
+1779635874548,10,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,10,0,0
+1779635874550,11,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,11,0,0
+1779635874554,9,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,9,0,0
+1779635874558,8,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,8,0,0
+1779635874561,8,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,8,0,0
+1779635874556,14,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635874564,9,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,9,0,0
+1779635874567,11,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,11,0,0
+1779635874569,11,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,11,0,0
+1779635874573,13,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,13,0,0
+1779635874571,21,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,4,4,http://localhost:3000/api/v1/aeronaves,21,0,0
+1779635874586,11,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,11,0,0
+1779635874592,9,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,9,0,0
+1779635874578,25,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,583,346,4,4,http://localhost:3000/api/v1/pecas,25,0,0
+1779635874580,25,POST /pecas,400,Bad Request,Usuarios-5 1-5,text,false,,686,351,4,4,http://localhost:3000/api/v1/pecas,25,0,0
+1779635874601,9,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,9,0,0
+1779635874606,6,PATCH /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,379,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,6,0,0
+1779635874597,19,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,581,344,4,4,http://localhost:3000/api/v1/pecas,19,0,0
+1779635874613,4,GET /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,179,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,4,0,0
+1779635874611,9,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,9,0,0
+1779635874603,19,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,361,4,4,http://localhost:3000/api/v1/pecas/21,19,0,0
+1779635874618,10,DELETE /pecas/{id},404,Not Found,Usuarios-5 1-5,text,false,,308,201,4,4,http://localhost:3000/api/v1/pecas/ID_NAO_ENCONTRADO,10,0,0
+1779635874620,11,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635874623,10,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,164,4,4,http://localhost:3000/api/v1/pecas/21,10,0,0
+1779635874616,19,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,586,358,4,4,http://localhost:3000/api/v1/pecas/22,19,0,0
+1779635874631,13,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,13,0,0
+1779635874635,12,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,586,164,4,4,http://localhost:3000/api/v1/pecas/22,12,0,0
+1779635874633,15,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635874630,30,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,15197,165,4,4,http://localhost:3000/api/v1/aeronaves,30,0,0
+1779635874647,26,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635874660,20,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,20,0,0
+1779635874648,44,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,14876,165,4,4,http://localhost:3000/api/v1/aeronaves,44,0,0
+1779635874644,50,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,583,346,4,4,http://localhost:3000/api/v1/pecas,50,0,0
+1779635874681,25,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,25,0,0
+1779635874694,27,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,589,361,4,4,http://localhost:3000/api/v1/pecas/23,27,0,0
+1779635874706,13,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,13,0,0
+1779635874692,23,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,23,0,0
+1779635874674,38,GET /aeronaves,200,OK,Usuarios-5 1-2,text,true,,14868,165,4,4,http://localhost:3000/api/v1/aeronaves,38,0,0
+1779635874727,4,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,589,164,4,4,http://localhost:3000/api/v1/pecas/23,4,0,0
+1779635874727,5,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,5,0,0
+1779635874727,7,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,6,0,0
+1779635874727,11,GET /etapas,200,OK,Usuarios-5 1-2,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,11,0,0
+1779635874731,11,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635874734,10,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,10,0,0
+1779635874732,15,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,15,0,0
+1779635874738,13,GET /funcionarios,200,OK,Usuarios-5 1-2,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,13,0,0
+1779635874747,15,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,15,0,0
+1779635874742,31,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,4,4,http://localhost:3000/api/v1/aeronaves,31,0,0
+1779635874751,25,GET /pecas,200,OK,Usuarios-5 1-2,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,25,0,0
+1779635874762,26,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,26,0,0
+1779635874744,46,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,578,341,4,4,http://localhost:3000/api/v1/pecas,46,0,0
+1779635874776,17,GET /relatorios,200,OK,Usuarios-5 1-2,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,17,0,0
+1779635874773,24,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,4,4,http://localhost:3000/api/v1/etapas,24,0,0
+1779635874793,10,GET /testes,200,OK,Usuarios-5 1-2,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,10,0,0
+1779635874798,7,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,4,4,http://localhost:3000/api/v1/funcionarios,7,0,0
+1779635874788,20,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,577,340,4,4,http://localhost:3000/api/v1/pecas,20,0,0
+1779635874805,6,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,4,4,http://localhost:3000/api/v1/pecas,6,0,0
+1779635874790,25,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,582,354,4,4,http://localhost:3000/api/v1/pecas/21,25,0,0
+1779635874812,9,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,4,4,http://localhost:3000/api/v1/relatorios,9,0,0
+1779635874815,8,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,582,164,4,4,http://localhost:3000/api/v1/pecas/21,8,0,0
+1779635874804,21,POST /pecas,201,Created,Usuarios-5 1-2,text,true,,580,343,4,4,http://localhost:3000/api/v1/pecas,21,0,0
+1779635874809,19,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,583,355,4,4,http://localhost:3000/api/v1/pecas/22,19,0,0
+1779635874821,14,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,4,4,http://localhost:3000/api/v1/testes,14,0,0
+1779635874828,9,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,583,164,4,4,http://localhost:3000/api/v1/pecas/22,9,0,0
+1779635874823,16,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635874825,21,PATCH /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,585,357,4,4,http://localhost:3000/api/v1/pecas/23,21,0,0
+1779635874837,18,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635874846,17,GET /pecas/{id},200,OK,Usuarios-5 1-2,text,true,,585,164,4,4,http://localhost:3000/api/v1/pecas/23,17,0,0
+1779635874839,29,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14875,165,4,4,http://localhost:3000/api/v1/aeronaves,29,0,0
+1779635874835,38,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,576,339,4,4,http://localhost:3000/api/v1/pecas,38,0,0
+1779635874863,25,DELETE /pecas/{id},204,No Content,Usuarios-5 1-2,,true,,166,186,4,4,http://localhost:3000/api/v1/pecas/23,0,0,0
+1779635874868,25,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,25,0,0
+1779635874856,42,GET /aeronaves,200,OK,Usuarios-5 1-3,text,true,,15178,165,3,3,http://localhost:3000/api/v1/aeronaves,42,0,0
+1779635874893,9,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,9,0,0
+1779635874898,8,GET /etapas,200,OK,Usuarios-5 1-3,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,8,0,0
+1779635874874,33,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,584,356,3,3,http://localhost:3000/api/v1/pecas/24,33,0,0
+1779635874902,7,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,7,0,0
+1779635874906,9,GET /funcionarios,200,OK,Usuarios-5 1-3,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,8,0,0
+1779635874907,9,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,584,164,3,3,http://localhost:3000/api/v1/pecas/24,9,0,0
+1779635874909,10,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,10,0,0
+1779635874915,10,GET /pecas,200,OK,Usuarios-5 1-3,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,10,0,0
+1779635874920,8,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,8,0,0
+1779635874916,15,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/24,0,0,0
+1779635874926,10,GET /relatorios,200,OK,Usuarios-5 1-3,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,10,0,0
+1779635874936,16,GET /testes,200,OK,Usuarios-5 1-3,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,16,0,0
+1779635874931,26,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,3,3,http://localhost:3000/api/v1/aeronaves,26,0,0
+1779635874928,32,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,575,338,3,3,http://localhost:3000/api/v1/pecas,32,0,0
+1779635874958,12,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,3,3,http://localhost:3000/api/v1/etapas,12,0,0
+1779635874953,21,POST /pecas,201,Created,Usuarios-5 1-3,text,true,,585,348,3,3,http://localhost:3000/api/v1/pecas,21,0,0
+1779635874970,6,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,3,3,http://localhost:3000/api/v1/funcionarios,6,0,0
+1779635874960,18,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,581,353,3,3,http://localhost:3000/api/v1/pecas/21,18,0,0
+1779635874977,7,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,3,3,http://localhost:3000/api/v1/pecas,7,0,0
+1779635874978,9,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,581,164,3,3,http://localhost:3000/api/v1/pecas/21,9,0,0
+1779635874975,16,PATCH /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,361,3,3,http://localhost:3000/api/v1/pecas/22,16,0,0
+1779635874985,8,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,3,3,http://localhost:3000/api/v1/relatorios,8,0,0
+1779635874988,9,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635874991,8,GET /pecas/{id},200,OK,Usuarios-5 1-3,text,true,,589,164,3,3,http://localhost:3000/api/v1/pecas/22,8,0,0
+1779635874994,8,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,3,3,http://localhost:3000/api/v1/testes,8,0,0
+1779635874999,17,DELETE /pecas/{id},204,No Content,Usuarios-5 1-3,,true,,166,186,3,3,http://localhost:3000/api/v1/pecas/22,0,0,0
+1779635874998,24,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14879,165,2,2,http://localhost:3000/api/v1/aeronaves,24,0,0
+1779635875022,10,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,10,0,0
+1779635875002,32,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,581,344,2,2,http://localhost:3000/api/v1/pecas,32,0,0
+1779635875032,11,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,11,0,0
+1779635875043,6,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,2,2,http://localhost:3000/api/v1/pecas,6,0,0
+1779635875035,18,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,584,356,2,2,http://localhost:3000/api/v1/pecas/21,18,0,0
+1779635875049,8,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,2,2,http://localhost:3000/api/v1/relatorios,8,0,0
+1779635875054,5,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,584,164,2,2,http://localhost:3000/api/v1/pecas/21,5,0,0
+1779635875057,8,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,2,2,http://localhost:3000/api/v1/testes,8,0,0
+1779635875059,9,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,2,2,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635875068,31,GET /aeronaves,200,OK,Usuarios-5 1-4,text,true,,14558,165,2,2,http://localhost:3000/api/v1/aeronaves,31,0,0
+1779635875065,37,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,583,346,2,2,http://localhost:3000/api/v1/pecas,37,0,0
+1779635875099,15,GET /etapas,200,OK,Usuarios-5 1-4,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,15,0,0
+1779635875102,16,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,589,361,2,2,http://localhost:3000/api/v1/pecas/21,16,0,0
+1779635875114,6,GET /funcionarios,200,OK,Usuarios-5 1-4,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,6,0,0
+1779635875119,6,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,589,164,2,2,http://localhost:3000/api/v1/pecas/21,6,0,0
+1779635875120,7,GET /pecas,200,OK,Usuarios-5 1-4,text,true,,3066,161,2,2,http://localhost:3000/api/v1/pecas,7,0,0
+1779635875125,9,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,2,2,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635875127,11,GET /relatorios,200,OK,Usuarios-5 1-4,text,true,,9330,166,2,2,http://localhost:3000/api/v1/relatorios,11,0,0
+1779635875139,8,GET /testes,200,OK,Usuarios-5 1-4,text,true,,2911,162,2,2,http://localhost:3000/api/v1/testes,8,0,0
+1779635875134,17,GET /aeronaves,200,OK,Usuarios-5 1-5,text,true,,14558,165,2,2,http://localhost:3000/api/v1/aeronaves,17,0,0
+1779635875151,8,GET /etapas,200,OK,Usuarios-5 1-5,text,true,,3632,162,2,2,http://localhost:3000/api/v1/etapas,8,0,0
+1779635875147,16,POST /pecas,201,Created,Usuarios-5 1-4,text,true,,582,345,2,2,http://localhost:3000/api/v1/pecas,16,0,0
+1779635875159,7,GET /funcionarios,200,OK,Usuarios-5 1-5,text,true,,2161,168,2,2,http://localhost:3000/api/v1/funcionarios,7,0,0
+1779635875166,4,GET /pecas,200,OK,Usuarios-5 1-5,text,true,,3066,161,2,2,http://localhost:3000/api/v1/pecas,4,0,0
+1779635875163,9,PATCH /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,587,359,2,2,http://localhost:3000/api/v1/pecas/21,9,0,0
+1779635875170,4,GET /relatorios,200,OK,Usuarios-5 1-5,text,true,,9330,166,2,2,http://localhost:3000/api/v1/relatorios,4,0,0
+1779635875172,4,GET /pecas/{id},200,OK,Usuarios-5 1-4,text,true,,587,164,2,2,http://localhost:3000/api/v1/pecas/21,4,0,0
+1779635875175,6,GET /testes,200,OK,Usuarios-5 1-5,text,true,,2911,162,2,2,http://localhost:3000/api/v1/testes,6,0,0
+1779635875176,8,DELETE /pecas/{id},204,No Content,Usuarios-5 1-4,,true,,166,186,2,2,http://localhost:3000/api/v1/pecas/21,0,0,0
+1779635875181,10,POST /pecas,201,Created,Usuarios-5 1-5,text,true,,586,349,1,1,http://localhost:3000/api/v1/pecas,10,0,0
+1779635875192,9,PATCH /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,590,362,1,1,http://localhost:3000/api/v1/pecas/21,9,0,0
+1779635875201,4,GET /pecas/{id},200,OK,Usuarios-5 1-5,text,true,,590,164,1,1,http://localhost:3000/api/v1/pecas/21,4,0,0
+1779635875205,7,DELETE /pecas/{id},204,No Content,Usuarios-5 1-5,,true,,166,186,1,1,http://localhost:3000/api/v1/pecas/21,0,0,0
