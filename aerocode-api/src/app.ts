@@ -2,6 +2,7 @@ import cors = require("cors");
 import express = require("express");
 import { Request, Response } from "express";
 import { swaggerSpec, swaggerUi } from "./config/swagger";
+import { apiMetricsMiddleware } from "./middlewares/api-metrics.middleware";
 import { authenticationMiddleware } from "./middlewares/authentication.middleware";
 import { aeronaveRoutes } from "./modules/aeronave/aeronave.routes";
 import { authRoutes } from "./modules/auth/auth.routes";
@@ -46,6 +47,7 @@ app.get("/health", (_req: Request, res: Response) => {
 });
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1", apiMetricsMiddleware);
 app.use("/api/v1", authenticationMiddleware);
 app.use("/api/v1/pecas", pecaRoutes);
 app.use("/api/v1/etapas", etapaRoutes);

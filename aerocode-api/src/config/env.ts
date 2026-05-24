@@ -47,5 +47,7 @@ const toNumber = (value: string | undefined, defaultValue: number) => {
 export const env = {
     authTokenRequired: toBoolean(process.env.AUTH_TOKEN_REQUIRED, false),
     authTokenSecret: process.env.AUTH_TOKEN_SECRET || "aerocode-dev-secret",
-    authTokenExpiresInSeconds: toNumber(process.env.AUTH_TOKEN_EXPIRES_IN_SECONDS, 24 * 60 * 60)
+    authTokenExpiresInSeconds: toNumber(process.env.AUTH_TOKEN_EXPIRES_IN_SECONDS, 24 * 60 * 60),
+    apiMetricsEnabled: toBoolean(process.env.API_METRICS_ENABLED, false),
+    apiMetricsPersist: toBoolean(process.env.API_METRICS_PERSIST, true)
 };

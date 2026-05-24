@@ -141,3 +141,24 @@ model Relatorio {
   @@index([dataEmissao])
   @@map("relatorios")
 }
+
+model ApiMetric {
+  id           String   @id @default(cuid()) @db.VarChar(36)
+  metodo       String   @db.VarChar(10)
+  caminho      String   @db.VarChar(255)
+  rota         String   @db.VarChar(255)
+  statusCode   Int
+  duracaoMs    Float
+  iniciadoEm   DateTime
+  finalizadoEm DateTime
+  ip           String?  @db.VarChar(80)
+  userAgent    String?  @db.VarChar(255)
+  createdAt    DateTime @default(now())
+
+  @@index([metodo])
+  @@index([rota])
+  @@index([statusCode])
+  @@index([duracaoMs])
+  @@index([iniciadoEm])
+  @@map("api_metricas")
+}
