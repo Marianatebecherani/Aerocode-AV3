@@ -4,7 +4,6 @@ import App from './App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { ProjectsProvider } from './context/ProjectsContext';
 
 const root = document.getElementById('root');
 
@@ -17,11 +16,9 @@ ReactDOM.createRoot(root).render(
     <BrowserRouter>
       {/* O AuthProvider vem por dentro, para que ele possa usar
          os hooks de navegação (como o useNavigate) */}
-      <ProjectsProvider>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </ProjectsProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

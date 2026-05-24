@@ -14,6 +14,7 @@ import LinhaDeMontagem from './pages/LinhaDeMontagem';
 import Relatorios from './pages/Relatorios';
 import Configuracoes from './pages/Configuracoes';
 import { useAuth } from './context/AuthContext';
+import { ProjectsProvider } from './context/ProjectsContext';
 import { ROLES } from './utils/permissions';
 
 function RootRedirect() {
@@ -31,7 +32,9 @@ function App() {
       <Route
         element={
           <ProtectedRoute>
-            <Layout />
+            <ProjectsProvider>
+              <Layout />
+            </ProjectsProvider>
           </ProtectedRoute>
         }
       >

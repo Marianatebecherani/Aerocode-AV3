@@ -9,6 +9,16 @@ import type {
 
 const API_BASE = '/api/v1';
 const AUTH_TOKEN_STORAGE_KEY = 'aerocode_token';
+const AUTH_USER_STORAGE_KEY = 'aerocode_user';
+
+function clearInvalidSession() {
+  localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+  localStorage.removeItem(AUTH_USER_STORAGE_KEY);
+
+  if (window.location.pathname !== '/login') {
+    window.location.assign('/login');
+  }
+}
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
@@ -30,6 +40,10 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const data = await response.json().catch(() => null);
 
   if (!response.ok) {
+    if (response.status === 401) {
+      clearInvalidSession();
+    }
+
     throw new Error(data?.message || 'Erro ao comunicar com o backend.');
   }
 
