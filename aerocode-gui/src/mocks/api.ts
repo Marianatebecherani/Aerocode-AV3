@@ -255,7 +255,7 @@ export const mockApi = {
   login: async ({ usuario, senha }) => {
     const funcionario = db.funcionarios.find((item) => item.usuario === usuario && item.senha === senha);
     if (!funcionario) return delay({ autenticado: false });
-    return delay({ autenticado: true, funcionario });
+    return delay({ autenticado: true, funcionario, token: 'mock-token' });
   },
 
   listarAeronaves: (params: MockParams = {}) => delay(paginate(filterAeronaves(params), params)),

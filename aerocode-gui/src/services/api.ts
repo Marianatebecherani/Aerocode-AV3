@@ -8,14 +8,21 @@ import type {
 } from '../types/api';
 
 const API_BASE = '/api/v1';
+const AUTH_TOKEN_STORAGE_KEY = 'aerocode_token';
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const token = localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(options.headers || {}),
+  };
+
   const response = await fetch(`${API_BASE}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers || {}),
-    },
     ...options,
+    headers: {
+      ...headers,
+    },
   });
 
   if (response.status === 204) return null as T;

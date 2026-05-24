@@ -67,6 +67,7 @@ export type LoginPayload = {
 export type LoginResponse = {
   autenticado: boolean;
   funcionario?: Funcionario;
+  token?: string;
 };
 
 export type Aeronave = {
