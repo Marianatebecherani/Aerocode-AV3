@@ -20,6 +20,8 @@ type AuthContextValue = {
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
+const AUTH_USER_STORAGE_KEY = 'aerocode_user';
+const AUTH_TOKEN_STORAGE_KEY = 'aerocode_token';
 
 function normalizeFuncionario(funcionario?: Funcionario): AuthUser | null {
   if (!funcionario) return null;
@@ -42,7 +44,7 @@ type AuthProviderProps = {
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<AuthUser | null>(() => {
     try {
-      const storedUser = localStorage.getItem('aerocode_user');
+      const storedUser = localStorage.getItem(AUTH_USER_STORAGE_KEY);
       return storedUser ? JSON.parse(storedUser) : null;
     } catch (error) {
       console.error('Erro ao carregar usuario do localStorage:', error);
@@ -62,13 +64,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     const normalizedUser = normalizeFuncionario(resultado.funcionario);
     setUser(normalizedUser);
-    localStorage.setItem('aerocode_user', JSON.stringify(normalizedUser));
+    localStorage.setItem(AUTH_USER_STORAGE_KEY, JSON.stringify(normalizedUser));
+    if (resultado.token) {
+      localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, resultado.token);
+    } else {
+      localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+    }
     return true;
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('aerocode_user');
+    localStorage.removeItem(AUTH_USER_STORAGE_KEY);
+    localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
   };
 
   return (

@@ -546,6 +546,11 @@ const swaggerDefinition = {
                     },
                     funcionario: {
                         $ref: "#/components/schemas/Funcionario"
+                    },
+                    token: {
+                        type: "string",
+                        description: "Token Bearer para acessar as rotas protegidas quando AUTH_TOKEN_REQUIRED=true.",
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
                     }
                 }
             },

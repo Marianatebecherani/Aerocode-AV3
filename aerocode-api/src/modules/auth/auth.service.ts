@@ -1,6 +1,7 @@
 import * as bcrypt from "bcrypt";
 import { FuncionarioResponseDTO } from "../funcionario";
 import { FuncionarioRepository } from "../funcionario/funcionario.repository";
+import { TokenService } from "./token.service";
 
 export type LoginDTO = {
     usuario: string;
@@ -10,10 +11,14 @@ export type LoginDTO = {
 export type LoginResponseDTO = {
     autenticado: boolean;
     funcionario?: FuncionarioResponseDTO;
+    token?: string;
 };
 
 export class AuthService {
-    constructor(private readonly funcionarioRepository: FuncionarioRepository) {}
+    constructor(
+        private readonly funcionarioRepository: FuncionarioRepository,
+        private readonly tokenService = new TokenService()
+    ) {}
 
     async login(dto: LoginDTO): Promise<LoginResponseDTO> {
         this.validarCredenciais(dto);
@@ -28,9 +33,12 @@ export class AuthService {
             return { autenticado: false };
         }
 
+        const funcionarioResponse = funcionario.toResponse();
+
         return {
             autenticado: true,
-            funcionario: funcionario.toResponse()
+            funcionario: funcionarioResponse,
+            token: this.tokenService.gerarToken(funcionarioResponse)
         };
     }
 

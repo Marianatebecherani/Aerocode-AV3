@@ -2,6 +2,7 @@ import cors = require("cors");
 import express = require("express");
 import { Request, Response } from "express";
 import { swaggerSpec, swaggerUi } from "./config/swagger";
+import { authenticationMiddleware } from "./middlewares/authentication.middleware";
 import { aeronaveRoutes } from "./modules/aeronave/aeronave.routes";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { dashboardRoutes } from "./modules/dashboard";
@@ -44,10 +45,11 @@ app.get("/health", (_req: Request, res: Response) => {
     res.json({ status: "ok" });
 });
 
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1", authenticationMiddleware);
 app.use("/api/v1/pecas", pecaRoutes);
 app.use("/api/v1/etapas", etapaRoutes);
 app.use("/api/v1/funcionarios", funcionarioRoutes);
-app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1/testes", testeRoutes);
 app.use("/api/v1/aeronaves", aeronaveRoutes);
