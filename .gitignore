@@ -175,3 +175,5 @@ aerocode-gui/vite.config.ts.timestamp-*
 aerocode-gui/.env
 aerocode-gui/.env.*
 !aerocode-gui/.env.example
+
+testes/*
